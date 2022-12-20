@@ -40,7 +40,7 @@ public class RootCards : BaseUnityPlugin
     public static ConfigEntry<bool> Credits;
     private const string ModId = "com.Root.Cards";
     private const string ModName = "RootCards";
-    public const string Version = "1.0.1"; // What version are we On (major.minor.patch)?
+    public const string Version = "1.0.2"; // What version are we On (major.minor.patch)?
     internal static AssetBundle Assets;
     public const string ModInitials = "Root"; 
     public static RootCards instance { get; private set; }
