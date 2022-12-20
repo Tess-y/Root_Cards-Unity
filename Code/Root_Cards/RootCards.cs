@@ -16,17 +16,20 @@ using WillsWackyManagers.Utils;
 using RarityLib.Utils;
 using System.Linq;
 using Nullmanager;
+using System.Collections.Generic;
+using System.Reflection;
 
 // These are the mods required for our Mod to work
-[BepInDependency("com.willis.rounds.unbound", BepInDependency.DependencyFlags.HardDependency)]
-[BepInDependency("pykess.rounds.plugins.moddingutils", BepInDependency.DependencyFlags.HardDependency)]
-[BepInDependency("pykess.rounds.plugins.cardchoicespawnuniquecardpatch", BepInDependency.DependencyFlags.HardDependency)]
-[BepInDependency("com.willuwontu.rounds.itemshops", BepInDependency.DependencyFlags.HardDependency)]
-[BepInDependency("com.willuwontu.rounds.managers", BepInDependency.DependencyFlags.HardDependency)]
+[BepInDependency("com.willis.rounds.unbound")]
+[BepInDependency("pykess.rounds.plugins.moddingutils")]
+[BepInDependency("pykess.rounds.plugins.cardchoicespawnuniquecardpatch")]
+[BepInDependency("com.willuwontu.rounds.itemshops")]
+[BepInDependency("com.willuwontu.rounds.managers")]
 [BepInDependency("root.classes.manager.reborn")]
 [BepInDependency("root.cardtheme.lib")]
 [BepInDependency("root.rarity.lib")]
 [BepInDependency("com.Root.Null")]
+[BepInDependency("pykess.rounds.plugins.pickncards", BepInDependency.DependencyFlags.SoftDependency)]
 // Declares our Mod to Bepin
 [BepInPlugin(ModId, ModName, Version)]
 // The game our Mod Is associated with
@@ -43,11 +46,14 @@ public class RootCards : BaseUnityPlugin
     public static RootCards instance { get; private set; }
     public static CardCategory PotatoCategory; 
     private static CardCategory[] _noLotteryCategories;
+    internal static List<BaseUnityPlugin> plugins;
     public static CardCategory[] noLotteryCategories {get{
         if(_noLotteryCategories == null)
             _noLotteryCategories =  new CardCategory[] { CardChoiceSpawnUniqueCardPatch.CustomCategories.CustomCardCategories.instance.CardCategory("CardManipulation"), CardChoiceSpawnUniqueCardPatch.CustomCategories.CustomCardCategories.instance.CardCategory("NoRandom") };
         return _noLotteryCategories;
     }}
+
+    internal static int DrawsPerTurn = 1;
 
     //    <EmbeddedResource Include="Assets\AssetBundles\rootassets" />
     void Awake()
@@ -65,17 +71,16 @@ public class RootCards : BaseUnityPlugin
     }
     void Start()
     {
-    
+        plugins = (List<BaseUnityPlugin>)typeof(BepInEx.Bootstrap.Chainloader).GetField("_plugins", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
         Unbound.RegisterMenu("Root Settings", delegate () { }, new Action<GameObject>(this.NewGUI), null, true);
 
         NullManager.instance.RegesterOnAddCallback(OnNullAdd);
 
         GameModeManager.AddHook(GameModeHooks.HookPlayerPickEnd, (gm) => ExtraPicks());
-        GameModeManager.AddHook(GameModeHooks.HookGameStart, (gm) => SetUpContract());
-        GameModeManager.AddHook(GameModeHooks.HookGameStart, (gm) => Genie.Wish());
         GameModeManager.AddHook(GameModeHooks.HookPickEnd, (gm) => Genie.WaitTillShopDone());
-        GameModeManager.AddHook(GameModeHooks.HookGameStart, (gm) => Genie.RestCardLock());
+        GameModeManager.AddHook(GameModeHooks.HookGameStart, GameStart);
         GameModeManager.AddHook(GameModeHooks.HookPointEnd, PointEnd);
+        //GameModeManager.AddHook(GameModeHooks.HookPickEnd, (gm)=> TimeWalkHandler.TimeWalk(PlayerManager.instance.players[0]),GameModeHooks.Priority.First);
     }
     
 
@@ -85,6 +90,10 @@ public class RootCards : BaseUnityPlugin
         {
             UnityEngine.Debug.Log("ROOT=>" + message);
         }
+    }
+
+    private void UpdateDraws(){
+        DrawsPerTurn = (int)typeof(PickNCards.PickNCards).GetField("picks", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static).GetValue(null);
     }
 
     private void NewGUI(GameObject menu)
@@ -101,13 +110,12 @@ public class RootCards : BaseUnityPlugin
         }, 50, false, Color.red, null, null, null);
     }
 
-    internal static IEnumerator SetUpContract(){
+    internal void SetUpContract(){
         RarityLib.Utils.RarityUtils.SetCardRarityModifier(CardResgester.ModCards["Contract"],20);
         RarityLib.Utils.RarityUtils.SetCardRarityModifier(CardResgester.ModCards["Dark_Queen"],200);
-        yield break;
     }
 
-    internal static IEnumerator ExtraPicks()
+    internal IEnumerator ExtraPicks()
     {
         foreach (Player player in PlayerManager.instance.players.ToArray())
         {
@@ -122,14 +130,30 @@ public class RootCards : BaseUnityPlugin
         }
         yield break;
     }
-
-    internal static IEnumerator PointEnd(IGameModeHandler gm){
+    
+    internal IEnumerator GameStart(IGameModeHandler gm){
+        SetUpContract();
+        yield return Genie.Wish();
+        yield return Genie.RestCardLock();
+        if(plugins.Exists(plugin => plugin.Info.Metadata.GUID == "pykess.rounds.plugins.pickncards")){
+            UpdateDraws();
+        }/*
+        TimeWalkHandler.Picks = new Dictionary<Player, int>();
+        TimeWalkHandler.CardsSeen = new Dictionary<Player, List<CardInfo>>();
+        PlayerManager.instance.players.ToList().ForEach(player => {
+            TimeWalkHandler.Picks[player] = DrawsPerTurn;
+            TimeWalkHandler.CardsSeen[player] = new List<CardInfo>();
+        });
+        TimeWalkHandler.TimeWalking = false;*/
+        yield break;
+    }
+    internal IEnumerator PointEnd(IGameModeHandler gm){
         PlayerManager.instance.players.ToList().ForEach(player => {
             player.data.stats.AjustNulls(player.data.stats.GetRootData().nullsPerPoint);
         });
         yield break;
     }
-    internal static void OnNullAdd(NullCardInfo card, Player player){
+    internal void OnNullAdd(NullCardInfo card, Player player){
         Gun gun = player.GetComponent<Holding>().holdable.GetComponent<Gun>();
         GunAmmo gunAmmo = gun.GetComponentInChildren<GunAmmo>();
         CharacterData data = player.GetComponent<CharacterData>();

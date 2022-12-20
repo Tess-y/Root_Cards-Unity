@@ -3,6 +3,7 @@ using ModdingUtils.Extensions;
 using Nullmanager;
 using TMPro;
 using UnityEngine;
+using UnboundLib;
 
 public class RootCardInfo : CardInfo
 {
@@ -10,6 +11,7 @@ public class RootCardInfo : CardInfo
     public bool Hidden = false;
     public bool Reassign = true;
     public bool AntiCard = false;
+    public bool IsCurse = false;
     public bool Nullable = true;
     public bool NeedsNull = false;
     public bool PickPhaseOnly = false;
@@ -25,6 +27,14 @@ public class RootCardInfo : CardInfo
         }
         if(!Nullable) GetComponent<CardInfo>().MarkUnNullable();
         if(NeedsNull) GetComponent<CardInfo>().NeedsNull();
+        if(IsCurse){
+            RootCards.instance.ExecuteAfterFrames(3,()=>{
+                WillsWackyManagers.Utils.CurseManager.instance.RegisterCurse(GetComponent<CardInfo>());
+                var categories = GetComponent<CardInfo>().categories.ToList();
+                categories.Add(WillsWackyManagers.Utils.CurseManager.instance.curseCategory);
+                GetComponent<CardInfo>().categories = categories.ToArray();
+            });
+        }
     }
 
     public void Start(){

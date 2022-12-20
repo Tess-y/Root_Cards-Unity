@@ -10,7 +10,9 @@
         "CardThemeLib",
         "ItemShops",
         "CardChoiceSpawnUniqueCardPatch",
-        "NullManager"
+        "NullManager",
+        "PickNCards",
+        "RoundsWithFriends"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
