@@ -40,7 +40,7 @@ public class RootCards : BaseUnityPlugin
     public static ConfigEntry<bool> Credits;
     private const string ModId = "com.Root.Cards";
     private const string ModName = "RootCards";
-    public const string Version = "1.0.0"; // What version are we On (major.minor.patch)?
+    public const string Version = "1.0.1"; // What version are we On (major.minor.patch)?
     internal static AssetBundle Assets;
     public const string ModInitials = "Root"; 
     public static RootCards instance { get; private set; }
@@ -169,5 +169,9 @@ public class RootCards : BaseUnityPlugin
         gun.damage *= characterStats.GetRootData().nullData.Damage_multiplier;
         gun.reflects += characterStats.GetRootData().nullData.gun_Reflects;
         gunAmmo.maxAmmo += characterStats.GetRootData().nullData.gun_Ammo;
+
+        if(RarityLib.Utils.RarityUtils.GetRarityData(card.rarity).relativeRarity <= RarityLib.Utils.RarityUtils.GetRarityData(CardInfo.Rarity.Rare).relativeRarity){
+            characterStats.respawns += characterStats.GetRootData().nullData.Revives;
+        }
     }
 }

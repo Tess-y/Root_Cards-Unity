@@ -66,7 +66,7 @@ public class RootStatModifiers : MonoBehaviour{
             int nullcount = player.GetNullCount();
             int rareNullcound = 0;
             RarityLib.Utils.RarityUtils.Rarities.Values.ToList().ForEach(r => {
-                if(r.relativeRarity >= RarityLib.Utils.RarityUtils.GetRarityData(CardInfo.Rarity.Rare).relativeRarity){
+                if(r.relativeRarity <= RarityLib.Utils.RarityUtils.GetRarityData(CardInfo.Rarity.Rare).relativeRarity){
                     rareNullcound += player.GetNullCount(r.value);
                 }
             });
@@ -98,7 +98,7 @@ public class RootStatModifiers : MonoBehaviour{
             NullManager.instance.SetAdditionalNullStats(player,"Root_Cards",GetStatsForPlayer(player));
             
             RarityLib.Utils.RarityUtils.Rarities.Values.ToList().ForEach(r => {
-                if(r.relativeRarity >= RarityLib.Utils.RarityUtils.GetRarityData(CardInfo.Rarity.Rare).relativeRarity){
+                if(r.relativeRarity <= RarityLib.Utils.RarityUtils.GetRarityData(CardInfo.Rarity.Rare).relativeRarity){
                     NullManager.instance.SetRarityNullStats(player,r.value,"Root_Cards",GetRareStatsForPlayer(player));
                 }
             });

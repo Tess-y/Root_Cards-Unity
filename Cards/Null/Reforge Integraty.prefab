@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 114969577739340399}
   - component: {fileID: 114737029165672358}
   - component: {fileID: 114193385136356738}
+  - component: {fileID: 114943897460178280}
   m_Layer: 0
   m_Name: Reforge Integraty
   m_TagString: Untagged
@@ -98,6 +99,7 @@ MonoBehaviour:
   Hidden: 0
   Reassign: 0
   AntiCard: 0
+  IsCurse: 0
   Nullable: 1
   NeedsNull: 1
   PickPhaseOnly: 0
@@ -305,6 +307,8 @@ MonoBehaviour:
   ammoCap: -1
   bulletCap: -1
   wishes: 0
+  hpCulling: 0
+  nullsPerPoint: 0
   usedAmmo: 0
   invertion: 0
   Null_Health_multiplier: 1
@@ -314,6 +318,7 @@ MonoBehaviour:
   Null_gun_Reflects: 0
   Null_gun_Ammo: 0
   Null_Lifesteal: 0
+  Null_Revives: 0
 --- !u!114 &114193385136356738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,3 +341,15 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &114943897460178280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043437007509817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aae706515b36124599f07cdea1b5e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
