@@ -81,14 +81,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundDisableBlockBasic: 0
   cardName: Cursed Rune
-  cardDestription: Damage partially recuced the targets max HP
+  cardDestription: Damage partially reduces the targets max HP
   cardStats:
   - positive: 1
     amount: +50%
     simepleAmount: 0
     stat: Damage
   rarity: 1
-  cardArt: {fileID: 0}
+  cardArt: {fileID: 8299696661941467403, guid: 1d49317016472d24990dfae9cf2887dc, type: 3}
   sprite: {fileID: 0}
   sourceCard: {fileID: 0}
   cardColor: {r: 0.14509805, g: 0.14509805, b: 0.14509805, a: 1}
@@ -101,6 +101,7 @@ MonoBehaviour:
   Hidden: 0
   Reassign: 1
   AntiCard: 0
+  IsCurse: 0
   Nullable: 1
   NeedsNull: 0
   PickPhaseOnly: 0
@@ -308,7 +309,8 @@ MonoBehaviour:
   ammoCap: -1
   bulletCap: -1
   wishes: 0
-  hpCulling: 0
+  hpCulling: 0.3
+  nullsPerPoint: 0
   usedAmmo: 0
   invertion: 0
   Null_Health_multiplier: 1

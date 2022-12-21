@@ -57,7 +57,7 @@ public class Genie
             {
                 gameObject = new GameObject();
                 gameObject.AddComponent<Canvas>().sortingLayerName = "MostFront";
-                gameObject.AddComponent<TextMeshProUGUI>().text = "Wating For Players In Wish Menu";
+                gameObject.AddComponent<TextMeshProUGUI>().text = "Waiting For Players In Wish Menu";
                 Color c = Color.magenta;
                 c.a = .85f;
                 gameObject.GetComponent<TextMeshProUGUI>().color = c;

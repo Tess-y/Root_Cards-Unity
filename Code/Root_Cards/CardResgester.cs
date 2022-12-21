@@ -13,7 +13,7 @@ public class CardResgester : MonoBehaviour
         ModCards = new Dictionary<string, CardInfo>();
         foreach(var card in cards){
             if(card == null) continue;
-            card.name = $"Root-Card  {card.name} ({card.tag})";
+            card.name = $"Root-Card  {card.name} ({card.Tag})";
             ModCards.Add(card.Key,card);
             PhotonNetwork.PrefabPool.RegisterPrefab(card.name, card.gameObject);
             if(card.Hidden){
