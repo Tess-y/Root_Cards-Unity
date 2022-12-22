@@ -17,7 +17,7 @@ public class DeNuller : OnAddEffect
             List<CardInfo> nulleds = new List<CardInfo>();
             for (int i = 0; i< cards.Count; i++)
             {
-                if (cards[i].GetComponent<CardInfo>() is NullCardInfo nullCard)
+                if (cards[i] is NullCardInfo nullCard)
                 {
                     nulls.Add(i);
                     nulleds.Add(nullCard.NulledSorce);
@@ -27,7 +27,7 @@ public class DeNuller : OnAddEffect
         });
     }
 
-    public IEnumerator ReplaceCards(Player player, int[] indeces, CardInfo[] newCards, string[] twoLetterCodes = null, bool editCardBar = true)
+    public IEnumerator ReplaceCards(Player player, int[] indeces, CardInfo[] newCards, string[] twoLetterCodes = null, bool editCardBar= true)
     {
         if (twoLetterCodes == null)
         {
