@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 
-internal class Devourer : DealtDamageEffect
-{
+internal class Devourer: DealtDamageEffect {
     public Hunger hunger;
-    public override void DealtDamage(Vector2 damage, bool selfDamage, Player damagedPlayer = null)
-    {
+    public override void DealtDamage(Vector2 damage, bool selfDamage, Player damagedPlayer = null) {
         RootCards.Debug(hunger);
-        hunger.gunStatModifier.projectileColor = Color.white;
-        hunger.hungerLevel = 1;
+        hunger.gunStatModifier.projectileColor=Color.white;
+        hunger.hungerLevel=1;
     }
 }

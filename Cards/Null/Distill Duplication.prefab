@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 114737029165672358}
   - component: {fileID: 114193385136356738}
   m_Layer: 0
-  m_Name: Distill Knowledge
+  m_Name: Distill Duplication
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,12 +46,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1043437007509817}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98b2bbcc09027464da20acbbb271927e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarityName: Common
+  rarityName: Mythical
 --- !u!114 &114645847624926142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,13 +80,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundDisableBlockBasic: 0
-  cardName: Distill Knowledge
-  cardDestription: 'Draw a new hand of cards to pick from untill you take a null.
-
-
-    <color=#af0000><i>Gain nulls from taking normal cards.</i></color>'
+  cardName: Distill Duplication
+  cardDestription: 'Get a copy of each card '
   cardStats: []
-  rarity: 2
+  rarity: 0
   cardArt: {fileID: 0}
   sprite: {fileID: 0}
   sourceCard: {fileID: 0}
@@ -95,8 +92,8 @@ MonoBehaviour:
   allowMultiple: 1
   blacklistedCategories: []
   cardBase: {fileID: 1720757555582362, guid: ab7829e25091330408953c12456bfb86, type: 3}
-  colorTheme: 8
-  Key: Null_Knowledge
+  colorTheme: 3
+  Key: Null_Duplication
   Hidden: 0
   Reassign: 0
   AntiCard: 0
@@ -105,7 +102,7 @@ MonoBehaviour:
   NeedsNull: 0
   PickPhaseOnly: 0
   Tag: Root
-  Author: Lilith
+  Author: 
 --- !u!114 &114081461618018503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,7 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nulls: 0
   WhichTime: 0
-  knowledge: 1
+  knowledge: 0
   ShieldStoneSize: 1
   shieldEfectiveness: 1
   projectileSizeMult: 1

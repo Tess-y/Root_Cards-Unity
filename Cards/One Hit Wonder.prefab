@@ -135,7 +135,7 @@ MonoBehaviour:
   AddObjectToPlayer: {fileID: 7918397795886889864, guid: 1be7bdb6caa23f840ac364091d2d840e,
     type: 3}
   objectsAddedToPlayer: []
-  sizeMultiplier: 15
+  sizeMultiplier: 1
   health: 0.000001
   movementSpeed: 1
   jump: 1

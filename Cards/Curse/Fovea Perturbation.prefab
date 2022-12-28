@@ -93,7 +93,7 @@ MonoBehaviour:
   sourceCard: {fileID: 0}
   cardColor: {r: 0.14509805, g: 0.14509805, b: 0.14509805, a: 1}
   categories: []
-  allowMultiple: 1
+  allowMultiple: 0
   blacklistedCategories: []
   cardBase: {fileID: 1720757555582362, guid: ab7829e25091330408953c12456bfb86, type: 3}
   colorTheme: 0

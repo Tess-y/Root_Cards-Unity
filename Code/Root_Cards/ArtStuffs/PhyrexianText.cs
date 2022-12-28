@@ -38,7 +38,7 @@ public class PhyrexianText : MonoBehaviour
         for(int i = 0; i < count; i++){
             for(int j = 0; j < start.Length/count; j++){
                 if((i*count)+j < target){
-                    newString[(j*count)+i] = end[(j*count)+i];
+                    newString[(j*count)+count - 2 -i] = end[(j*count)+count - 2 -i];
                 }else{
                 }
             }

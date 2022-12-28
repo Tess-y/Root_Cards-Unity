@@ -6,7 +6,7 @@ using ItemShops.Extensions;
 using System.Linq;
 using Nullmanager;
 
-public class RootStatModifiers : MonoBehaviour{
+public class RootStatModifiers: MonoBehaviour {
     public int nulls = 0;
     public int WhichTime = 0;
     public bool knowledge = false;
@@ -31,7 +31,7 @@ public class RootStatModifiers : MonoBehaviour{
         public float Null_Lifesteal = 0;
         public int Null_Revives = 0;
 
-    public void Apply(Player player){
+    public void Apply(Player player) {
         Gun gun = player.GetComponent<Holding>().holdable.GetComponent<Gun>();
         GunAmmo gunAmmo = gun.GetComponentInChildren<GunAmmo>();
         CharacterData data = player.GetComponent<CharacterData>();
@@ -41,188 +41,179 @@ public class RootStatModifiers : MonoBehaviour{
         Block block = player.GetComponent<Block>();
         CharacterStatModifiers characterStats = player.GetComponent<CharacterStatModifiers>();
 
-        gun.projectileSize += 1;
-        gun.projectileSize *= projectileSizeMult;
-        gun.projectileSize -= 1;
+        gun.projectileSize+=1;
+        gun.projectileSize*=projectileSizeMult;
+        gun.projectileSize-=1;
 
         characterStats.AjustNulls(nulls);
-        characterStats.GetRootData().witchTimeDuration += WhichTime;
+        characterStats.GetRootData().witchTimeDuration+=WhichTime;
 
-        characterStats.GetRootData().shieldEfectiveness *= shieldEfectiveness;
+        characterStats.GetRootData().shieldEfectiveness*=shieldEfectiveness;
 
-        if(ammoCap>0) characterStats.GetRootData().ammoCap = ammoCap;
-        if(bulletCap>0) characterStats.GetRootData().bulletCap = bulletCap;
-        
-        if(knowledge) RootCards.instance.ExecuteAfterFrames(1,()=>{ characterStats.GetRootData().knowledge++;});
+        if(ammoCap>0)
+            characterStats.GetRootData().ammoCap=ammoCap;
+        if(bulletCap>0)
+            characterStats.GetRootData().bulletCap=bulletCap;
 
-        characterStats.GetRootData().hpCulling = 1-((1-characterStats.GetRootData().hpCulling)*(1-hpCulling));
+        if(knowledge)
+            RootCards.instance.ExecuteAfterFrames(1, () => { characterStats.GetRootData().knowledge++; });
 
-        player.GetAdditionalData().bankAccount.Deposit("Wish",wishes);
+        characterStats.GetRootData().hpCulling=1-((1-characterStats.GetRootData().hpCulling)*(1-hpCulling));
 
-        characterStats.GetRootData().nullsPerPoint += nullsPerPoint;
+        player.GetAdditionalData().bankAccount.Deposit("Wish", wishes);
+
+        characterStats.GetRootData().nullsPerPoint+=nullsPerPoint;
 
         var nullDataToUpgraide = characterStats.GetRootData().nullData;
         {
             int nullcount = player.GetNullCount();
             int rareNullcound = 0;
             RarityLib.Utils.RarityUtils.Rarities.Values.ToList().ForEach(r => {
-                if(r.relativeRarity <= RarityLib.Utils.RarityUtils.GetRarityData(CardInfo.Rarity.Rare).relativeRarity){
-                    rareNullcound += player.GetNullCount(r.value);
+                if(r.relativeRarity<=RarityLib.Utils.RarityUtils.GetRarityData(CardInfo.Rarity.Rare).relativeRarity) {
+                    rareNullcound+=player.GetNullCount(r.value);
                 }
             });
 
-            nullDataToUpgraide.Health_multiplier *= Null_Health_multiplier;
-            data.maxHealth *= Mathf.Pow(Null_Health_multiplier, nullcount);
+            nullDataToUpgraide.Health_multiplier*=Null_Health_multiplier;
+            data.maxHealth*=Mathf.Pow(Null_Health_multiplier, nullcount);
 
-            nullDataToUpgraide.MovmentSpeed_multiplier *= Null_MovmentSpeed_multiplier;
-            characterStats.movementSpeed *= Mathf.Pow(Null_MovmentSpeed_multiplier, nullcount);
+            nullDataToUpgraide.MovmentSpeed_multiplier*=Null_MovmentSpeed_multiplier;
+            characterStats.movementSpeed*=Mathf.Pow(Null_MovmentSpeed_multiplier, nullcount);
 
-            nullDataToUpgraide.Damage_multiplier *= Null_Damage_multiplier;
-            gun.damage *= Mathf.Pow(Null_Damage_multiplier, nullcount);   
-            
-            nullDataToUpgraide.Lifesteal += Null_Lifesteal;
-            characterStats.lifeSteal += nullcount*Null_Lifesteal;
+            nullDataToUpgraide.Damage_multiplier*=Null_Damage_multiplier;
+            gun.damage*=Mathf.Pow(Null_Damage_multiplier, nullcount);
 
-            nullDataToUpgraide.block_cdMultiplier *= Null_block_cdMultiplier;
-            block.cdMultiplier *= Mathf.Pow(Null_block_cdMultiplier, nullcount);
+            nullDataToUpgraide.Lifesteal+=Null_Lifesteal;
+            characterStats.lifeSteal+=nullcount*Null_Lifesteal;
 
-            nullDataToUpgraide.gun_Reflects += Null_gun_Reflects;
-            gun.reflects += nullcount*Null_gun_Reflects;
+            nullDataToUpgraide.block_cdMultiplier*=Null_block_cdMultiplier;
+            block.cdMultiplier*=Mathf.Pow(Null_block_cdMultiplier, nullcount);
 
-            nullDataToUpgraide.gun_Ammo += Null_gun_Ammo;
-            gunAmmo.maxAmmo += nullcount*Null_gun_Ammo;
+            nullDataToUpgraide.gun_Reflects+=Null_gun_Reflects;
+            gun.reflects+=nullcount*Null_gun_Reflects;
 
-            nullDataToUpgraide.Revives += Null_Revives;
-            characterStats.respawns += rareNullcound*Null_Revives;
+            nullDataToUpgraide.gun_Ammo+=Null_gun_Ammo;
+            gunAmmo.maxAmmo+=nullcount*Null_gun_Ammo;
 
-            NullManager.instance.SetAdditionalNullStats(player,"Root_Cards",GetStatsForPlayer(player));
-            
+            nullDataToUpgraide.Revives+=Null_Revives;
+            characterStats.respawns+=rareNullcound*Null_Revives;
+
+            NullManager.instance.SetAdditionalNullStats(player, "Root_Cards", GetStatsForPlayer(player));
+
             RarityLib.Utils.RarityUtils.Rarities.Values.ToList().ForEach(r => {
-                if(r.relativeRarity <= RarityLib.Utils.RarityUtils.GetRarityData(CardInfo.Rarity.Rare).relativeRarity){
-                    NullManager.instance.SetRarityNullStats(player,r.value,"Root_Cards",GetRareStatsForPlayer(player));
+                if(r.relativeRarity<=RarityLib.Utils.RarityUtils.GetRarityData(CardInfo.Rarity.Rare).relativeRarity) {
+                    NullManager.instance.SetRarityNullStats(player, r.value, "Root_Cards", GetRareStatsForPlayer(player));
                 }
             });
         }
 
 
         Transform[] allChildren = player.gameObject.GetComponentsInChildren<Transform>();
-        foreach (Transform child in allChildren)
-        {
-            if(child.gameObject.name == "ShieldStone")
-            {
-                child.localScale *= ShieldStoneSize;
+        foreach(Transform child in allChildren) {
+            if(child.gameObject.name=="ShieldStone") {
+                child.localScale*=ShieldStoneSize;
             }
         }
 
 
-        if(invertion){
-            float damage = gun.damage*55 * gun.bulletDamageMultiplier;
-            gun.damage = data.maxHealth/55f;
-            player.data.maxHealth = damage;
+        if(invertion) {
+            float damage = gun.damage*55*gun.bulletDamageMultiplier;
+            gun.damage=data.maxHealth/55f;
+            player.data.maxHealth=damage;
         }
 
 
-        if (player.data.stats.GetRootData().ammoCap != -1) {
-			GunAmmo ammo = gun.GetComponentInChildren<GunAmmo>();
-			ammo.maxAmmo = Mathf.Clamp(ammo.maxAmmo, 1, player.data.stats.GetRootData().ammoCap);
-            usedAmmo = false;
-		}
-		if (player.data.stats.GetRootData().bulletCap != -1)
-		{
-			gun.numberOfProjectiles = Mathf.Clamp(gun.numberOfProjectiles, 1, player.data.stats.GetRootData().bulletCap);
-		}
-        if(PhotonNetwork.IsMasterClient && usedAmmo){
-            var ammo = new System.Random().Next(18) + 7;
-            GetComponent<PhotonView>().RPC("RPC_UsedAmmo",RpcTarget.All,ammo);
+        if(player.data.stats.GetRootData().ammoCap!=-1) {
+            GunAmmo ammo = gun.GetComponentInChildren<GunAmmo>();
+            ammo.maxAmmo=Mathf.Clamp(ammo.maxAmmo, 1, player.data.stats.GetRootData().ammoCap);
+            usedAmmo=false;
+        }
+        if(player.data.stats.GetRootData().bulletCap!=-1) {
+            gun.numberOfProjectiles=Mathf.Clamp(gun.numberOfProjectiles, 1, player.data.stats.GetRootData().bulletCap);
+        }
+        if(PhotonNetwork.IsMasterClient&&usedAmmo) {
+            var ammo = new System.Random().Next(18)+7;
+            GetComponent<PhotonView>().RPC("RPC_UsedAmmo", RpcTarget.All, ammo);
         }
     }
 
-    public static CardInfoStat[] GetStatsForPlayer(Player player)
-    {
-        CharacterStatModifiersRootData.NullData nullData =  player.data.stats.GetRootData().nullData;
+    public static CardInfoStat[] GetStatsForPlayer(Player player) {
+        CharacterStatModifiersRootData.NullData nullData = player.data.stats.GetRootData().nullData;
         List<CardInfoStat> stats = new List<CardInfoStat>();
-        if (nullData.Health_multiplier > 1)
-            stats.Add(new CardInfoStat()
-            {
-                positive = true,
-                stat = "Health",
-                amount = $"+{(int)((nullData.Health_multiplier - 1) * 100)}%",
-                simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+        if(nullData.Health_multiplier>1)
+            stats.Add(new CardInfoStat() {
+                positive=true,
+                stat="Health",
+                amount=$"+{(int)((nullData.Health_multiplier-1)*100)}%",
+                simepleAmount=CardInfoStat.SimpleAmount.notAssigned
             });
 
-        if (nullData.MovmentSpeed_multiplier > 1)
-            stats.Add(new CardInfoStat()
-            {
-                positive = true,
-                stat = "Movemet Speed",
-                amount = $"+{(int)((nullData.MovmentSpeed_multiplier - 1) * 100)}%",
-                simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+        if(nullData.MovmentSpeed_multiplier>1)
+            stats.Add(new CardInfoStat() {
+                positive=true,
+                stat="Movemet Speed",
+                amount=$"+{(int)((nullData.MovmentSpeed_multiplier-1)*100)}%",
+                simepleAmount=CardInfoStat.SimpleAmount.notAssigned
             });
 
-        if (nullData.Lifesteal > 0)
-            stats.Add(new CardInfoStat()
-            {
-                positive = true,
-                stat = "Lifesteal",
-                amount = $"+{(int)((nullData.Lifesteal) * 100)}%",
-                simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+        if(nullData.Lifesteal>0)
+            stats.Add(new CardInfoStat() {
+                positive=true,
+                stat="Lifesteal",
+                amount=$"+{(int)((nullData.Lifesteal)*100)}%",
+                simepleAmount=CardInfoStat.SimpleAmount.notAssigned
             });
 
-        if (nullData.block_cdMultiplier < 1)
-            stats.Add(new CardInfoStat()
-            {
-                positive = true,
-                stat = "Block Cooldown",
-                amount = $"-{(int)((1 - nullData.block_cdMultiplier) * 100)}%",
-                simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+        if(nullData.block_cdMultiplier<1)
+            stats.Add(new CardInfoStat() {
+                positive=true,
+                stat="Block Cooldown",
+                amount=$"-{(int)((1-nullData.block_cdMultiplier)*100)}%",
+                simepleAmount=CardInfoStat.SimpleAmount.notAssigned
             });
 
-        if (nullData.Damage_multiplier > 1)
-            stats.Add(new CardInfoStat()
-            {
-                positive = true,
-                stat = "Damage",
-                amount = $"+{(int)((nullData.Damage_multiplier - 1) * 100)}%",
-                simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+        if(nullData.Damage_multiplier>1)
+            stats.Add(new CardInfoStat() {
+                positive=true,
+                stat="Damage",
+                amount=$"+{(int)((nullData.Damage_multiplier-1)*100)}%",
+                simepleAmount=CardInfoStat.SimpleAmount.notAssigned
             });
 
-        if (nullData.gun_Reflects > 0)
-            stats.Add(new CardInfoStat()
-            {
-                positive = true,
-                stat = $"Bounce{(nullData.gun_Reflects == 1?"":"s")}",
-                amount = $"+{nullData.gun_Reflects}",
-                simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+        if(nullData.gun_Reflects>0)
+            stats.Add(new CardInfoStat() {
+                positive=true,
+                stat=$"Bounce{(nullData.gun_Reflects==1 ? "" : "s")}",
+                amount=$"+{nullData.gun_Reflects}",
+                simepleAmount=CardInfoStat.SimpleAmount.notAssigned
             });
 
-        if (nullData.gun_Ammo > 0)
-            stats.Add(new CardInfoStat()
-            {
-                positive = true,
-                stat = "Ammo",
-                amount = $"+{nullData.gun_Ammo}",
-                simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+        if(nullData.gun_Ammo>0)
+            stats.Add(new CardInfoStat() {
+                positive=true,
+                stat="Ammo",
+                amount=$"+{nullData.gun_Ammo}",
+                simepleAmount=CardInfoStat.SimpleAmount.notAssigned
             });
         return stats.ToArray();
     }
 
-    public static CardInfoStat[] GetRareStatsForPlayer(Player player){
-        CharacterStatModifiersRootData.NullData nullData =  player.data.stats.GetRootData().nullData;
-		List<CardInfoStat> stats = new List<CardInfoStat>();
-        if (nullData.Revives > 0)
-            stats.Add(new CardInfoStat()
-            {
-                positive = true,
-                stat = $"{(nullData.Revives == 1?"Life":"Lives")}",
-                amount = $"+{nullData.Revives}",
-                simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+    public static CardInfoStat[] GetRareStatsForPlayer(Player player) {
+        CharacterStatModifiersRootData.NullData nullData = player.data.stats.GetRootData().nullData;
+        List<CardInfoStat> stats = new List<CardInfoStat>();
+        if(nullData.Revives>0)
+            stats.Add(new CardInfoStat() {
+                positive=true,
+                stat=$"{(nullData.Revives==1 ? "Life" : "Lives")}",
+                amount=$"+{nullData.Revives}",
+                simepleAmount=CardInfoStat.SimpleAmount.notAssigned
             });
         return stats.ToArray();
     }
 
     [PunRPC]
-    public void RPC_UsedAmmo(int ammo){
-        ((Player)GetComponent<ApplyCardStats>().GetFieldValue("playerToUpgrade")).GetComponent<Holding>().holdable.GetComponentInChildren<GunAmmo>().maxAmmo += ammo;
+    public void RPC_UsedAmmo(int ammo) {
+        ((Player)GetComponent<ApplyCardStats>().GetFieldValue("playerToUpgrade")).GetComponent<Holding>().holdable.GetComponentInChildren<GunAmmo>().maxAmmo+=ammo;
     }
 
 }
