@@ -32,6 +32,7 @@ public class PhyrexianText : MonoBehaviour
     }
 
     public static string LarpTexts(int count, string start, string end, float part){
+        part = UnityEngine.Mathf.Clamp01(part);
         count += 1;
         int target = UnityEngine.Mathf.RoundToInt(start.Length * part);
         var newString = start.ToCharArray();

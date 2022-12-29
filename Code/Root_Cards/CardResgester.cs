@@ -19,7 +19,7 @@ public class CardResgester: MonoBehaviour {
             if(card.Hidden) {
                 ModdingUtils.Utils.Cards.instance.AddHiddenCard(card);
             } else {
-                CardManager.cards.Add(card.cardName, new Card(card.Tag, Unbound.config.Bind("Cards: "+card.Tag, card.name, true), card));
+                CardManager.cards.Add(card.name, new Card(card.Tag, Unbound.config.Bind("Cards: "+card.Tag, card.name, true), card));
             }
             card.Setup();
         }

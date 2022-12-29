@@ -26,7 +26,7 @@ internal class CardChoicePatchIDoEndPick {
                 NetworkingManager.RPC(typeof(CardChoicePatchIDoEndPick), nameof(GiveNulls), __instance.pickrID, ___spawnedCards.Count-1);
             ___spawnedCards.Clear();
             ___spawnedCards.Add(pickedCard);
-        }
+        } 
     }
 
     private static IEnumerator GrabCard(GameObject card, float speed, CardChoice __instance) {
