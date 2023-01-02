@@ -133,7 +133,7 @@ public class RootStatModifiers: MonoBehaviour {
         }
         if(PhotonNetwork.IsMasterClient&&usedAmmo) {
             var ammo = new System.Random().Next(18)+7;
-            GetComponent<PhotonView>().RPC("RPC_UsedAmmo", RpcTarget.All, ammo);
+            NetworkingManager.RPC(typeof(RootStatModifiers),nameof(RPC_UsedAmmo),ammo,player.playerID);
         }
     }
 
@@ -211,9 +211,10 @@ public class RootStatModifiers: MonoBehaviour {
         return stats.ToArray();
     }
 
-    [PunRPC]
-    public void RPC_UsedAmmo(int ammo) {
-        ((Player)GetComponent<ApplyCardStats>().GetFieldValue("playerToUpgrade")).GetComponent<Holding>().holdable.GetComponentInChildren<GunAmmo>().maxAmmo+=ammo;
+    [UnboundLib.Networking.UnboundRPC]
+    public static void RPC_UsedAmmo(int ammo, int playerID) {
+        Player player = PlayerManager.instance.players.Find(p=>p.playerID==playerID);
+        player.GetComponent<Holding>().holdable.GetComponentInChildren<GunAmmo>().maxAmmo+=ammo;
     }
 
 }

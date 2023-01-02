@@ -12,16 +12,12 @@ public class EternityPatch {
     [HarmonyPatch(typeof(ApplyCardStats), "Pick")]
     [HarmonyPrefix]
     public static bool PickCard(ApplyCardStats __instance, int pickerID, bool forcePick, PickerType pickerType) {
-        UnityEngine.Debug.Log("EternityPatch");
-        UnityEngine.Debug.Log(__instance.GetComponent<CardInfo>().sourceCard);
         if(pickerType==PickerType.Player) {
             Player player = PlayerManager.instance.players.Find(p => p.playerID==pickerID);
             if(player.data.stats.GetRootData().lockedCard!=null&&player.data.stats.GetRootData().lockedCard!=__instance.GetComponent<CardInfo>().sourceCard) {
                 player.data.stats.GetRootData().lockedCard.GetComponent<ApplyCardStats>().Pick(player.playerID, true, PickerType.Player);
-                UnityEngine.Debug.Log("false");
                 return false;
             }
-            UnityEngine.Debug.Log("true");
             return true;
         }
         List<Player> array = PlayerManager.instance.GetPlayersInTeam(pickerID).ToList();

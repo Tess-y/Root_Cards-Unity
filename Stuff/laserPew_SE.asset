@@ -1,0 +1,187 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 599046829, guid: 7b103cb0db623c84bbfc260cac5acf8d, type: 3}
+  m_Name: laserPew_SE
+  m_EditorClassIdentifier: 
+  soundContainerArray:
+  - {fileID: 11400000, guid: 84efe77b55e93ba4b942f04b426f1f8b, type: 2}
+  variables:
+    expandSoundContainers: 1
+    expandTimeline: 1
+    expandPreview: 0
+    expandAdvancedSettings: 0
+    expandTriggerOnPlay: 0
+    expandTriggerOnStop: 0
+    expandTriggerOnTail: 0
+    expandAllSoundTag: 0
+    timelineSoundContainerSetting: []
+    disableEnable: 0
+    soundEventModifier:
+      volumeDecibel: 0
+      volumeRatio: 1
+      pitchSemitone: 0
+      pitchRatio: 1
+      delay: 0
+      increase2d: 0
+      intensity: 1
+      reverbZoneMixDecibel: 0
+      reverbZoneMixRatio: 1
+      startPosition: 0
+      reverse: 0
+      stereoPan: 0
+      polyphony: 1
+      distanceScale: 1
+      distortionIncrease: 0
+      fadeInLength: 0
+      fadeInShape: -2
+      fadeOutLength: 0
+      fadeOutShape: -2
+      followTransform: 1
+      bypassReverbZones: 0
+      bypassVoiceEffects: 0
+      bypassListenerEffects: 0
+      volumeUse: 0
+      pitchUse: 0
+      delayUse: 0
+      increase2dUse: 0
+      intensityUse: 0
+      reverbZoneMixUse: 0
+      startPositionUse: 0
+      reverseUse: 0
+      stereoPanUse: 0
+      polyphonyUse: 0
+      distanceScaleUse: 0
+      distortionIncreaseUse: 0
+      fadeInLengthUse: 0
+      fadeInShapeUse: 0
+      fadeOutLengthUse: 0
+      fadeOutShapeUse: 0
+      followTransformUse: 0
+      bypassReverbZonesUse: 0
+      bypassVoiceEffectsUse: 0
+      bypassListenerEffectsUse: 0
+    audioMixerGroup: {fileID: 0}
+    soundMix: {fileID: 0}
+    soundPolyGroup: {fileID: 0}
+    soundPolyGroupPriority: 1
+    cooldownTime: 0
+    probability: 100
+    triggerOnPlayEnable: 0
+    triggerOnPlaySoundEvents:
+    - {fileID: 0}
+    triggerOnPlayWhichToPlayEnum: 0
+    triggerOnStopEnable: 0
+    triggerOnStopSoundEvents:
+    - {fileID: 0}
+    triggerOnStopWhichToPlayEnum: 0
+    triggerOnTailEnable: 0
+    triggerOnTailSoundEvents:
+    - {fileID: 0}
+    triggerOnTailWhichToPlayEnum: 0
+    triggerOnTailLength: 2
+    triggerOnTailBpm: 120
+    triggerOnTailBeatLength: 2
+    soundTagEnable: 0
+    soundTagMode: 1
+    soundTagGroupArray:
+    - soundTag: {fileID: 0}
+      baseSoundEventModifier:
+        volumeDecibel: 0
+        volumeRatio: 1
+        pitchSemitone: 0
+        pitchRatio: 1
+        delay: 0
+        increase2d: 0
+        intensity: 1
+        reverbZoneMixDecibel: 0
+        reverbZoneMixRatio: 1
+        startPosition: 0
+        reverse: 0
+        stereoPan: 0
+        polyphony: 1
+        distanceScale: 1
+        distortionIncrease: 0
+        fadeInLength: 0
+        fadeInShape: -2
+        fadeOutLength: 0
+        fadeOutShape: -2
+        followTransform: 1
+        bypassReverbZones: 0
+        bypassVoiceEffects: 0
+        bypassListenerEffects: 0
+        volumeUse: 0
+        pitchUse: 0
+        delayUse: 0
+        increase2dUse: 0
+        intensityUse: 0
+        reverbZoneMixUse: 0
+        startPositionUse: 0
+        reverseUse: 0
+        stereoPanUse: 0
+        polyphonyUse: 0
+        distanceScaleUse: 0
+        distortionIncreaseUse: 0
+        fadeInLengthUse: 0
+        fadeInShapeUse: 0
+        fadeOutLengthUse: 0
+        fadeOutShapeUse: 0
+        followTransformUse: 0
+        bypassReverbZonesUse: 0
+        bypassVoiceEffectsUse: 0
+        bypassListenerEffectsUse: 0
+      soundTagSoundEventModifier:
+        volumeDecibel: 0
+        volumeRatio: 1
+        pitchSemitone: 0
+        pitchRatio: 1
+        delay: 0
+        increase2d: 0
+        intensity: 1
+        reverbZoneMixDecibel: 0
+        reverbZoneMixRatio: 1
+        startPosition: 0
+        reverse: 0
+        stereoPan: 0
+        polyphony: 1
+        distanceScale: 1
+        distortionIncrease: 0
+        fadeInLength: 0
+        fadeInShape: -2
+        fadeOutLength: 0
+        fadeOutShape: -2
+        followTransform: 1
+        bypassReverbZones: 0
+        bypassVoiceEffects: 0
+        bypassListenerEffects: 0
+        volumeUse: 0
+        pitchUse: 0
+        delayUse: 0
+        increase2dUse: 0
+        intensityUse: 0
+        reverbZoneMixUse: 0
+        startPositionUse: 0
+        reverseUse: 0
+        stereoPanUse: 0
+        polyphonyUse: 0
+        distanceScaleUse: 0
+        distortionIncreaseUse: 0
+        fadeInLengthUse: 0
+        fadeInShapeUse: 0
+        fadeOutLengthUse: 0
+        fadeOutShapeUse: 0
+        followTransformUse: 0
+        bypassReverbZonesUse: 0
+        bypassVoiceEffectsUse: 0
+        bypassListenerEffectsUse: 0
+      soundEvent:
+      - {fileID: 0}
+      useSoundEventModifiers: 0

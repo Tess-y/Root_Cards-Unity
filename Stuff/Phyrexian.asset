@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Phyrexian
   m_EditorClassIdentifier: 
-  hashCode: 138342159
+  hashCode: 954631208
   material: {fileID: 21316138565304726}
   materialHashCode: 2131891339
   m_Version: 1.1.0
@@ -1716,7 +1716,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: DIGITAL-7 Material
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

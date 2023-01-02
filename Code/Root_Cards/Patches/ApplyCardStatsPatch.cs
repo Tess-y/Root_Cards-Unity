@@ -11,7 +11,7 @@ internal class ApplyCardStatsPatch {
             if(__instance.GetComponent<CardInfo>().sourceCard is NullCardInfo||__instance.GetComponent<CardInfo>() is NullCardInfo) {
                 ___playerToUpgrade.data.stats.GetRootData().knowledge--;
             } else {
-                ___playerToUpgrade.data.stats.AjustNulls((int)Mathf.Ceil(NullManager.instance.GetNullValue(__instance.GetComponent<CardInfo>().rarity)*1.5f));
+                ___playerToUpgrade.data.stats.AjustNulls((int)Mathf.Ceil(0.5f+NullManager.instance.GetNullValue(__instance.GetComponent<CardInfo>().rarity)*1.5f));
             }
         }
         var aad = __instance.GetComponent<RootStatModifiers>();

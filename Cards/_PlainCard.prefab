@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 114737029165672358}
   - component: {fileID: 114193385136356738}
   m_Layer: 0
-  m_Name: PlainCard
+  m_Name: _PlainCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,8 +65,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  targetColor: {r: 0, g: 0, b: 0, a: 0}
-  bgColor: {r: 0, g: 0, b: 0, a: 0}
+  targetColor: {r: 0, g: 0, b: 0, a: 1}
+  bgColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &114722944486319090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +97,7 @@ MonoBehaviour:
   Hidden: 0
   Reassign: 1
   AntiCard: 0
+  IsCurse: 0
   Nullable: 1
   NeedsNull: 0
   PickPhaseOnly: 0
@@ -304,6 +305,8 @@ MonoBehaviour:
   ammoCap: -1
   bulletCap: -1
   wishes: 0
+  hpCulling: 0
+  nullsPerPoint: 0
   usedAmmo: 0
   invertion: 0
   Null_Health_multiplier: 1
@@ -313,6 +316,7 @@ MonoBehaviour:
   Null_gun_Reflects: 0
   Null_gun_Ammo: 0
   Null_Lifesteal: 0
+  Null_Revives: 0
 --- !u!114 &114193385136356738
 MonoBehaviour:
   m_ObjectHideFlags: 0

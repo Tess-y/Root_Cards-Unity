@@ -18,6 +18,8 @@ using System.Linq;
 using Nullmanager;
 using System.Collections.Generic;
 using System.Reflection;
+using Steamworks;
+using UnityEngine.SceneManagement;
 
 // These are the mods required for our Mod to work
 [BepInDependency("com.willis.rounds.unbound")]
@@ -30,6 +32,7 @@ using System.Reflection;
 [BepInDependency("root.rarity.lib")]
 [BepInDependency("com.Root.Null")]
 [BepInDependency("pykess.rounds.plugins.pickncards", BepInDependency.DependencyFlags.SoftDependency)]
+[BepInDependency("com.willuwontu.rounds.tabinfo", BepInDependency.DependencyFlags.SoftDependency)]
 // Declares our Mod to Bepin
 [BepInPlugin(ModId, ModName, Version)]
 // The game our Mod Is associated with
@@ -39,7 +42,7 @@ public class RootCards: BaseUnityPlugin {
     public static ConfigEntry<bool> Credits;
     private const string ModId = "com.Root.Cards";
     private const string ModName = "RootCards";
-    public const string Version = "1.0.6"; // What version are we On (major.minor.patch)?
+    public const string Version = "1.1.2"; // What version are we On (major.minor.patch)?
     internal static AssetBundle Assets;
     public const string ModInitials = "Root";
     public static RootCards instance { get; private set; }
@@ -63,9 +66,9 @@ public class RootCards: BaseUnityPlugin {
         var harmony = new Harmony(ModId);
         harmony.PatchAll();
         instance=this;
-        RarityUtils.AddRarity("Trinket", 3, new Color(0.38f, 0.38f, 0.38f), new Color(0.0978f, 0.1088f, 0.1321f));
         CardThemeLib.CardThemeLib.instance.CreateOrGetType("DarknessBlack", new CardThemeColor() { bgColor=new Color(0.1978f, 0.1088f, 0.1321f), targetColor=new Color(0.0978f, 0.1088f, 0.1321f) });
         Assets=Jotunn.Utils.AssetUtils.LoadAssetBundleFromResources("rootassets", typeof(RootCards).Assembly);
+        Assets.LoadAsset<GameObject>("PrefabPool").GetComponent<PhotonPool>().Regester();
         Assets.LoadAsset<GameObject>("CardResgester").GetComponent<CardResgester>().Regester();
 
     }
@@ -80,6 +83,12 @@ public class RootCards: BaseUnityPlugin {
         GameModeManager.AddHook(GameModeHooks.HookGameStart, GameStart);
         GameModeManager.AddHook(GameModeHooks.HookPointEnd, PointEnd);
         //GameModeManager.AddHook(GameModeHooks.HookPickEnd, (gm)=> TimeWalkHandler.TimeWalk(PlayerManager.instance.players[0]),GameModeHooks.Priority.First);
+
+
+        if(plugins.Exists(plugin => plugin.Info.Metadata.GUID=="com.willuwontu.rounds.tabinfo")) {
+            TabinfoInterface.Setup();
+        }
+        
     }
 
 
@@ -136,7 +145,21 @@ public class RootCards: BaseUnityPlugin {
             TimeWalkHandler.CardsSeen[player] = new List<CardInfo>();
         });
         TimeWalkHandler.TimeWalking = false;*/
+        PlayerManager.instance.players.ForEach(player => {
+            if(player.data.view.IsMine) {
+                NetworkingManager.RPC(typeof(RootCards),nameof(SetSteamID),player.playerID, SteamUser.GetSteamID().m_SteamID.ToString());
+                Debug($"My SteamID is {SteamUser.GetSteamID().m_SteamID}"); 
+            }
+        });
         yield break;
+    }
+
+    [UnboundLib.Networking.UnboundRPC]
+    static void SetSteamID(int playerID, string steamID) {
+        Debug($"Player{playerID}'s SteamID is {steamID}");
+        if(PlayerManager.instance.players.Find(p => p.playerID==playerID) is Player player) {
+            player.data.stats.GetRootData().SteamID= steamID;
+        }
     }
     internal IEnumerator PointEnd(IGameModeHandler gm) {
         PlayerManager.instance.players.ToList().ForEach(player => {

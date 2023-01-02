@@ -88,7 +88,8 @@ MonoBehaviour:
   sprite: {fileID: 0}
   sourceCard: {fileID: 0}
   cardColor: {r: 0.14509805, g: 0.14509805, b: 0.14509805, a: 1}
-  categories: []
+  categories:
+  - {fileID: 11400000, guid: 9995a41091e26c14dbaf5700ede92c3a, type: 2}
   allowMultiple: 1
   blacklistedCategories: []
   cardBase: {fileID: 1720757555582362, guid: ab7829e25091330408953c12456bfb86, type: 3}

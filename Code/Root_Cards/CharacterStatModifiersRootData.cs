@@ -17,8 +17,12 @@ public class CharacterStatModifiersRootData {
     public float hpCulling;
     public int nullsPerPoint;
     public NullData nullData;
+    internal string SteamID;
     public CharacterStatModifiersRootData() {
         reset();
+        knowledge=0;
+        SteamID="";
+        stillShoping=false;
     }
 
     public void reset() {
@@ -30,8 +34,6 @@ public class CharacterStatModifiersRootData {
         trueMaxAmmo=3;
         lockedCard=null;
         witchTimeDuration=0;
-        stillShoping=false;
-        knowledge=0;
         hpCulling=0;
         nullsPerPoint=0;
         nullData=new NullData();

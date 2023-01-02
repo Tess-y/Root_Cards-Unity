@@ -12,7 +12,8 @@
         "CardChoiceSpawnUniqueCardPatch",
         "NullManager",
         "PickNCards",
-        "RoundsWithFriends"
+        "RoundsWithFriends",
+        "TabInfo"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
@@ -23,6 +24,7 @@
         "0Harmony.dll",
         "BepInEx.dll",
         "Assembly-CSharp.dll",
+        "Assembly-CSharp-firstpass.dll",
         "PhotonRealtime.dll",
         "PhotonUnityNetworking.dll",
         "SonigonAudioEngine.Runtime.dll",

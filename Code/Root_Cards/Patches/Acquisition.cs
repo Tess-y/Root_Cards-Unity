@@ -51,6 +51,6 @@ internal class CardChoicePatchIDoEndPick {
 
     [UnboundRPC]
     public static void GiveNulls(int playerID, int amount) {
-        PlayerManager.instance.players.Find(p => p.playerID==playerID).data.stats.AjustNulls((int)(amount*2.5f));
+        PlayerManager.instance.players.Find(p => p.playerID==playerID).data.stats.AjustNulls((int)(amount*3.5f));
     }
 }

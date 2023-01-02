@@ -14,7 +14,9 @@ public class HealthCurse: MonoBehaviour {
         if(_player==null)
             _player=gameObject.GetComponent<Player>();
 
-        UnityEngine.Debug.Log($"{HP}:{_Health}");
+        if(!ModdingUtils.Utils.PlayerStatus.PlayerAliveAndSimulated(_player))
+            return;
+        
         _player.data.maxHealth+=_Health;
         _Health=Mathf.Min(_Health+HP, _player.data.maxHealth-1);
         _player.data.maxHealth-=_Health;

@@ -9,6 +9,7 @@ using TMPro;
 using UnboundLib;
 using UnityEngine;
 using UnboundLib.Networking;
+using CardChoiceSpawnUniqueCardPatch.CustomCategories;
 
 public class Genie {
     public static Shop Genie_Shop;
@@ -186,7 +187,7 @@ internal class CardItem: Purchasable {
                     }
                     break;
             }*/
-
+        bool can_eternity = !card.categories.Contains(CustomCardCategories.instance.CardCategory("CardManipulation"));
         float rarity = RarityUtils.GetRarityData(card.rarity).relativeRarity;
         float Commonrarity = RarityUtils.GetRarityData(CardInfo.Rarity.Common).relativeRarity;
         float Uncommonrarity = RarityUtils.GetRarityData(CardInfo.Rarity.Uncommon).relativeRarity;
@@ -206,10 +207,10 @@ internal class CardItem: Purchasable {
                 ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, card, false, "", 2f, 2f);
             } else if(odds<100-(percent*2)) {
                 ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, CardResgester.ModCards["Genie_Granted"], false, "", 2f, 2f);
-            } else if(odds<0-(percent*3)) {
+            } else if(odds<390-(percent*3)) {
                 ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, CardResgester.ModCards["Genie_Fee"], false, "", 2f, 2f);
             } else {
-                ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, CardResgester.ModCards["Genie_Eternity"], false, "", 2f, 2f);
+                ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, CardResgester.ModCards[can_eternity ? "Genie_Eternity" : "Genie_Death"], false, "", 2f, 2f);
             }
         } else if(rarity>=Rarerarity) {
             float percent = ((rarity-Uncommonrarity)/(Rarerarity-Uncommonrarity))*100;
@@ -217,7 +218,7 @@ internal class CardItem: Purchasable {
             if(odds<90-(percent*2)) {
                 ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, CardResgester.ModCards["Genie_Fee"], false, "", 2f, 2f);
             } else if(odds>(percent*2)&&odds<100-percent/10) {
-                ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, CardResgester.ModCards["Genie_Eternity"], false, "", 2f, 2f);
+                ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, CardResgester.ModCards[can_eternity ? "Genie_Eternity" : "Genie_Death"], false, "", 2f, 2f);
             } else if(odds<390-(percent*3)) {
                 ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, CardResgester.ModCards["Genie_Death"], false, "", 2f, 2f);
             } else {
