@@ -136,7 +136,7 @@ MonoBehaviour:
     type: 3}
   objectsAddedToPlayer: []
   sizeMultiplier: 1
-  health: 0.000001
+  health: 1
   movementSpeed: 1
   jump: 1
   gravity: 1

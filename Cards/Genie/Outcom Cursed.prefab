@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 114737029165672358}
   - component: {fileID: 114193385136356738}
   m_Layer: 0
-  m_Name: Outcom Smiles
+  m_Name: Outcom Cursed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b2bbcc09027464da20acbbb271927e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarityName: Trinket
+  rarityName: Mythical
 --- !u!114 &114645847624926142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,11 +80,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundDisableBlockBasic: 0
-  cardName: 'Genie: Smiles'
-  cardDestription: "The genie smiles at you and says \n'Your wish is too modest. I
-    shall double what you asked for.',\nbefore disappearing into a cloud of smoke"
+  cardName: 'Genie: Cursed'
+  cardDestription: While you got what you asked for, you feel stragely cursed
   cardStats: []
-  rarity: 2
+  rarity: 0
   cardArt: {fileID: 458368614729445436, guid: 7f431c8109cc2554ab61b8e0ec5e2a50, type: 3}
   sprite: {fileID: 0}
   sourceCard: {fileID: 0}
@@ -96,7 +95,7 @@ MonoBehaviour:
   blacklistedCategories: []
   cardBase: {fileID: 1720757555582362, guid: ab7829e25091330408953c12456bfb86, type: 3}
   colorTheme: 8
-  Key: Genie_Smiles
+  Key: Genie_Cursed
   Hidden: 1
   Reassign: 1
   AntiCard: 0
@@ -119,7 +118,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundCharacterSlowFreeze: {fileID: 0}
-  AddObjectToPlayer: {fileID: 0}
+  AddObjectToPlayer: {fileID: 4086758270610195283, guid: 5da30fc3bdd66f449beb6247ea8d910f,
+    type: 3}
   objectsAddedToPlayer: []
   sizeMultiplier: 1
   health: 1

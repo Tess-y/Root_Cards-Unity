@@ -42,7 +42,7 @@ public class RootCards: BaseUnityPlugin {
     public static ConfigEntry<bool> Credits;
     private const string ModId = "com.Root.Cards";
     private const string ModName = "RootCards";
-    public const string Version = "1.1.2"; // What version are we On (major.minor.patch)?
+    public const string Version = "1.2.4"; // What version are we On (major.minor.patch)?
     internal static AssetBundle Assets;
     public const string ModInitials = "Root";
     public static RootCards instance { get; private set; }
@@ -88,7 +88,10 @@ public class RootCards: BaseUnityPlugin {
         if(plugins.Exists(plugin => plugin.Info.Metadata.GUID=="com.willuwontu.rounds.tabinfo")) {
             TabinfoInterface.Setup();
         }
-        
+
+        RerollManager.instance.RegisterRerollAction(Genie.GenieRerollAction);
+
+
     }
 
 

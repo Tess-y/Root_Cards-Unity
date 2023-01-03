@@ -46,12 +46,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1043437007509817}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98b2bbcc09027464da20acbbb271927e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarityName: Common
+  rarityName: Uncommon
 --- !u!114 &114645847624926142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,7 +105,9 @@ MonoBehaviour:
   sprite: {fileID: 0}
   sourceCard: {fileID: 0}
   cardColor: {r: 0.14509805, g: 0.14509805, b: 0.14509805, a: 1}
-  categories: []
+  categories:
+  - {fileID: 11400000, guid: ee7e44488e623b64f8b4d359385dc876, type: 2}
+  - {fileID: 11400000, guid: 0754f2b68f643044899887c12ede4d2c, type: 2}
   allowMultiple: 1
   blacklistedCategories: []
   cardBase: {fileID: 1720757555582362, guid: ab7829e25091330408953c12456bfb86, type: 3}
@@ -114,6 +116,7 @@ MonoBehaviour:
   Hidden: 1
   Reassign: 1
   AntiCard: 0
+  IsCurse: 0
   Nullable: 1
   NeedsNull: 0
   PickPhaseOnly: 1
@@ -321,6 +324,8 @@ MonoBehaviour:
   ammoCap: -1
   bulletCap: -1
   wishes: 0
+  hpCulling: 0
+  nullsPerPoint: 0
   usedAmmo: 0
   invertion: 0
   Null_Health_multiplier: 1
@@ -330,6 +335,7 @@ MonoBehaviour:
   Null_gun_Reflects: 0
   Null_gun_Ammo: 0
   Null_Lifesteal: 0
+  Null_Revives: 0
 --- !u!114 &114193385136356738
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,11 +10,33 @@ using UnboundLib;
 using UnityEngine;
 using UnboundLib.Networking;
 using CardChoiceSpawnUniqueCardPatch.CustomCategories;
+using static CardInfo;
+using UnboundLib.Utils;
+using ModdingUtils.Utils;
 
 public class Genie {
     public static Shop Genie_Shop;
     public static string ShopID = "Root_Genie_Shop";
     public static Dictionary<String, int> wishes = new Dictionary<String, int>();
+
+    internal static void GenieRerollAction(Player player, CardInfo[] originalCards) {
+        List<CardInfo> Outcome = originalCards.Where(c => c.categories.Contains(CustomCardCategories.instance.CardCategory("GenieOutcome"))).ToList();
+        if(Outcome.Count==0)
+            return;
+        List<CardInfo> newCards = new List<CardInfo>();
+        List<CardInfo> playerCards = player.data.currentCards.ToList();
+        while(playerCards.Count<Outcome.Count) {
+            Outcome.RemoveAt(UnityEngine.Random.Range(0, Outcome.Count));
+        }
+        for(int i = 0; i<Outcome.Count; i++) {
+            newCards.Add(Outcome[i]);
+            newCards.Add(playerCards[i]);
+        }
+        playerCards.RemoveRange(0, Outcome.Count);
+        newCards.AddRange(playerCards);
+        ModdingUtils.Utils.Cards.instance.RemoveAllCardsFromPlayer(player);
+        RootCards.instance.ExecuteAfterFrames(2, () => ModdingUtils.Utils.Cards.instance.AddCardsToPlayer(player, newCards.ToArray(), true, addToCardBar: true));
+    }
 
     internal static IEnumerator Wish() {
         wishes=new Dictionary<string, int>();
@@ -37,7 +59,7 @@ public class Genie {
                 items.Add(new CardItem(card));
             }
         }
-        Genie_Shop.AddItems(items.Select(c => c.Card.cardInfo.name).ToArray(), items.ToArray());
+        Genie_Shop.AddItems(items.Select(c => c.Card.cardInfo.cardName+c.Card.cardInfo.name).ToArray(), items.ToArray());
         yield break;
     }
 
@@ -148,8 +170,70 @@ internal class CardItem: Purchasable {
         return container;
     }
 
+    float GetDistance(CardInfo.Rarity r1, CardInfo.Rarity r2) {
+        float rarity = RarityUtils.GetRarityData(r2).relativeRarity;
+        float oRarity = RarityUtils.GetRarityData(r1).relativeRarity;
+        if(oRarity>rarity)
+            oRarity=oRarity/rarity;
+        else
+            oRarity=rarity/oRarity;
+        UnityEngine.Debug.Log($"{r1},{r2} : {oRarity}");
+        return oRarity-1;
+    }
+
+    private void DoGenieWish(Player player, CardInfo card) {
+        System.Random r = new System.Random();
+        bool can_eternity = !card.categories.Contains(CustomCardCategories.instance.CardCategory("CardManipulation"))&&!card.categories.Contains(CustomCardCategories.instance.CardCategory("cantEternity"));
+        List<RootCardInfo> Outcome = CardResgester.ModCards.Values.Where(c => c.categories.Contains(CustomCardCategories.instance.CardCategory("GenieOutcome"))&&
+            (c.allowMultiple||!player.data.currentCards.Contains(c))&&
+            (can_eternity||c.Key!="Genie_Eternity")&&GetDistance(c.rarity, card.rarity)<6).ToList();
+        if(r.Next(100)>=98||Outcome.Count==0) {
+            ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, CardResgester.ModCards["Empty_Lamp"], false, "", 2f, 2f);
+            return;
+        }
+        UnityEngine.Debug.Log(Outcome.Count);
+        List<float> odds = new List<float>();
+
+        float rarity = RarityUtils.GetRarityData(card.rarity).relativeRarity;
+        for(int i = 0; i<Outcome.Count; i++) {
+            odds.Add(GetDistance(Outcome[i].rarity, card.rarity));
+        }
+        var max = odds.Max();
+        odds=odds.Select(f => Mathf.Abs(f-max)).ToList();
+
+        var total = odds.Sum();
+
+        float result = UnityEngine.Random.Range(0f, total);
+        UnityEngine.Debug.Log($"Rolled:{result} out of {total}");
+        for(int i = 0; i<Outcome.Count; i++) {
+            result-=odds[i];
+            UnityEngine.Debug.Log(odds[i]);
+            if(result<=0f) {
+                var oCard = Outcome[i];
+                if(oCard.Key=="Genie_Greed")
+                    ModdingUtils.Utils.Cards.instance.RemoveAllCardsFromPlayer(player);
+                ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, oCard, false, "", 2f, 2f);
+                if(oCard.Key=="Genie_Smiles")
+                    ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, card, false, "", 2f, 2f);
+                break;
+            }
+        }
+
+
+        ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, card, false, "", 2f, 2f);
+    }
+
     public override void OnPurchase(Player player, Purchasable item) {
         var card = ((CardItem)item).Card.cardInfo;
+
+        DoGenieWish(player, card);
+
+        RootCards.instance.StartCoroutine(ShowCard(player, card));
+        if(player.data.view.IsMine&&!player.GetAdditionalData().bankAccount.HasFunds(Genie.wishes))
+            Genie.Genie_Shop.Hide();
+
+        return;
+
         System.Random r = new System.Random();/*
             switch (card.rarity)
             {

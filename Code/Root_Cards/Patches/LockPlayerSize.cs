@@ -10,6 +10,8 @@ public class LockPlayerSize: MonoBehaviour {
 
     void Start() {
         localScale = GetComponentInParent<Player>().transform.localScale;
+        GetComponentInParent<Player>().data.maxHealth=0;
+        GetComponentInParent<Player>().data.health=0;
     }
 }
 
