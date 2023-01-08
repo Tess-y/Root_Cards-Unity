@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 114737029165672358}
   - component: {fileID: 114193385136356738}
   m_Layer: 0
-  m_Name: Distill Duplication
+  m_Name: Backup ShotGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,12 +46,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1043437007509817}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98b2bbcc09027464da20acbbb271927e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarityName: Mythical
+  rarityName: Common
 --- !u!114 &114645847624926142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,8 +65,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  targetColor: {r: 0, g: 0, b: 0, a: 0}
-  bgColor: {r: 0, g: 0, b: 0, a: 0}
+  targetColor: {r: 0, g: 0, b: 0, a: 1}
+  bgColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &114722944486319090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,31 +80,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundDisableBlockBasic: 0
-  cardName: Distill Duplication
-  cardDestription: 'Get a copy of each card '
+  cardName: Backup ShotGun
+  cardDestription: Strap a 6 shot shotgun onto your pistal for close range combat
   cardStats: []
-  rarity: 0
+  rarity: 2
   cardArt: {fileID: 0}
   sprite: {fileID: 0}
   sourceCard: {fileID: 0}
   cardColor: {r: 0.14509805, g: 0.14509805, b: 0.14509805, a: 1}
   categories:
-  - {fileID: 11400000, guid: 9995a41091e26c14dbaf5700ede92c3a, type: 2}
-  - {fileID: 11400000, guid: d61171e440823854c95fe52aeab41aa2, type: 2}
-  allowMultiple: 1
+  - {fileID: 11400000, guid: 1dacc16e62dda4d43bd89125ad0d3a9c, type: 2}
+  allowMultiple: 0
   blacklistedCategories: []
   cardBase: {fileID: 1720757555582362, guid: 5210418c033649645832c59f832e1e4e, type: 3}
-  colorTheme: 3
-  Key: Null_Duplication
+  colorTheme: 0
+  Key: Backup_ShotGun
   Hidden: 0
-  Reassign: 0
+  Reassign: 1
   AntiCard: 0
   IsCurse: 0
   Nullable: 1
   NeedsNull: 0
   PickPhaseOnly: 0
   Tag: Root
-  Author: 
+  Author: Tess
 --- !u!114 &114081461618018503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundCharacterSlowFreeze: {fileID: 0}
-  AddObjectToPlayer: {fileID: 0}
+  AddObjectToPlayer: {fileID: 2743259901430525813, guid: 841801768ed595a4eb4d52490afeeecc,
+    type: 3}
   objectsAddedToPlayer: []
   sizeMultiplier: 1
   health: 1

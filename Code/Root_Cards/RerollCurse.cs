@@ -16,10 +16,7 @@ public class RerollCurse: OnAddEffect {
     public static IEnumerator DoReroll(Player player) {
         if(ModdingUtils.Utils.Cards.instance.RemoveCardFromPlayer(player,CardResgester.ModCards["Infinite_Reroll"],editCardBar: true) == 0) yield break;
         yield return new WaitForSeconds(0.25f);
-        yield return RerollManager.instance.Reroll(player,false,true);
-        yield return null;
-        yield return null;
-        ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player,CardResgester.ModCards["Infinite_Reroll"],addToCardBar: true);
+        yield return RerollManager.instance.Reroll(player,false,true, CardResgester.ModCards["Infinite_Reroll"]);
     }
 }
 

@@ -18,8 +18,9 @@ GameObject:
   - component: {fileID: 114969577739340399}
   - component: {fileID: 114737029165672358}
   - component: {fileID: 114193385136356738}
+  - component: {fileID: 114342476784091002}
   m_Layer: 0
-  m_Name: Distill Duplication
+  m_Name: Blinding Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b2bbcc09027464da20acbbb271927e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarityName: Mythical
+  rarityName: Trinket
 --- !u!114 &114645847624926142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,12 +60,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1043437007509817}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a89d10daf3634254bb2e6b79b9ee4280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: DefaultWhite
   targetColor: {r: 0, g: 0, b: 0, a: 0}
   bgColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114722944486319090
@@ -80,31 +81,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundDisableBlockBasic: 0
-  cardName: Distill Duplication
-  cardDestription: 'Get a copy of each card '
+  cardName: Blinding Light
+  cardDestription: <b>Sunglasses would have helped</b>
   cardStats: []
   rarity: 0
   cardArt: {fileID: 0}
   sprite: {fileID: 0}
   sourceCard: {fileID: 0}
   cardColor: {r: 0.14509805, g: 0.14509805, b: 0.14509805, a: 1}
-  categories:
-  - {fileID: 11400000, guid: 9995a41091e26c14dbaf5700ede92c3a, type: 2}
-  - {fileID: 11400000, guid: d61171e440823854c95fe52aeab41aa2, type: 2}
-  allowMultiple: 1
+  categories: []
+  allowMultiple: 0
   blacklistedCategories: []
   cardBase: {fileID: 1720757555582362, guid: 5210418c033649645832c59f832e1e4e, type: 3}
-  colorTheme: 3
-  Key: Null_Duplication
+  colorTheme: 0
+  Key: Blinding_Light
   Hidden: 0
-  Reassign: 0
+  Reassign: 1
   AntiCard: 0
-  IsCurse: 0
+  IsCurse: 1
   Nullable: 1
   NeedsNull: 0
   PickPhaseOnly: 0
-  Tag: Root
-  Author: 
+  Tag: Curse
+  Author: Tess
 --- !u!114 &114081461618018503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundCharacterSlowFreeze: {fileID: 0}
-  AddObjectToPlayer: {fileID: 0}
+  AddObjectToPlayer: {fileID: 1884989320639116327, guid: f73d9ee2a3663de4bbf1608bd5fa1207,
+    type: 3}
   objectsAddedToPlayer: []
   sizeMultiplier: 1
   health: 1
@@ -227,7 +227,22 @@ MonoBehaviour:
   currentCharge: 0
   useCharge: 0
   dontAllowAutoFire: 0
-  objectsToSpawn: []
+  objectsToSpawn:
+  - effect: {fileID: 0}
+    direction: 0
+    spawnOn: 0
+    spawnAsChild: 0
+    numberOfSpawns: 0
+    normalOffset: 0
+    stickToBigTargets: 0
+    stickToAllTargets: 0
+    zeroZ: 0
+    AddToProjectile: {fileID: 0}
+    removeScriptsFromProjectileObject: 0
+    scaleStacks: 0
+    scaleStackM: 0
+    scaleFromDamage: 0
+    stacks: 0
   projectileColor: {r: 0, g: 0, b: 0, a: 1}
   waveMovement: 0
   teleport: 0
@@ -341,3 +356,15 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &114342476784091002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043437007509817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf23ced8e9b51443ae80518ea38e17d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

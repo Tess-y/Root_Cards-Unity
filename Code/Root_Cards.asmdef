@@ -13,7 +13,8 @@
         "NullManager",
         "PickNCards",
         "RoundsWithFriends",
-        "TabInfo"
+        "TabInfo",
+        "PlayerTimeScale"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],

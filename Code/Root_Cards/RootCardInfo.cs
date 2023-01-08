@@ -6,6 +6,7 @@ using UnityEngine;
 using UnboundLib;
 
 public class RootCardInfo: CardInfo {
+    [Header("Root Settings")]
     public string Key;
     public bool Hidden = false;
     public bool Reassign = true;

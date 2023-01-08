@@ -16,7 +16,7 @@ public class TunnelVision: MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if(player==null||!player.data.view.IsMine||player.data.dead||running||CardChoice.instance.IsPicking)
+        if(player==null||!player.data.view.IsMine||!ModdingUtils.Utils.PlayerStatus.PlayerAliveAndSimulated(player)||running||CardChoice.instance.IsPicking)
             return;
         if(UnityEngine.Random.Range(0, odds--)==0)
             Confuse();

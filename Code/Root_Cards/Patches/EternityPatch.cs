@@ -11,17 +11,8 @@ public class EternityPatch {
 
     [HarmonyPatch(typeof(ApplyCardStats), "OFFLINE_Pick")]
     [HarmonyPrefix]
-    public static bool PickCardOffline(ApplyCardStats __instance, int pickerID, bool forcePick, PickerType pickerType) {
-        if(pickerType==PickerType.Player) {
-            Player player = PlayerManager.instance.players.Find(p => p.playerID==pickerID);
-            if(player.data.stats.GetRootData().lockedCard!=null&&player.data.stats.GetRootData().lockedCard!=__instance.GetComponent<CardInfo>().sourceCard) {
-                Cards.instance.AddCardToPlayer(player, player.data.stats.GetRootData().lockedCard, addToCardBar: true);
-                player.data.stats.GetRootData().lockedCard.GetComponent<ApplyCardStats>().Pick(player.playerID, true, PickerType.Player);
-                return false;
-            }
-            return true;
-        }
-        List<Player> array = PlayerManager.instance.GetPlayersInTeam(pickerID).ToList();
+    public static bool PickCardOffline(ApplyCardStats __instance, Player[] players) {
+        List<Player> array = players.ToList();
         if(array.Any(p => p.data.stats.GetRootData().lockedCard!=null)) {
             array.ForEach(player => {
                 UnityEngine.Debug.Log(player.data.stats.GetRootData().lockedCard);
@@ -37,17 +28,8 @@ public class EternityPatch {
     }
     [HarmonyPatch(typeof(ApplyCardStats), "RPCA_Pick")]
     [HarmonyPrefix]
-    public static bool PickCard(ApplyCardStats __instance, int pickerID, bool forcePick, PickerType pickerType) {
-        if(pickerType==PickerType.Player) {
-            Player player = PlayerManager.instance.players.Find(p => p.playerID==pickerID);
-            if(player.data.stats.GetRootData().lockedCard!=null&&player.data.stats.GetRootData().lockedCard!=__instance.GetComponent<CardInfo>().sourceCard) {
-                Cards.instance.AddCardToPlayer(player, player.data.stats.GetRootData().lockedCard, addToCardBar: true);
-                player.data.stats.GetRootData().lockedCard.GetComponent<ApplyCardStats>().Pick(player.playerID, true, PickerType.Player);
-                return false;
-            }
-            return true;
-        }
-        List<Player> array = PlayerManager.instance.GetPlayersInTeam(pickerID).ToList();
+    public static bool PickCard(ApplyCardStats __instance, int[] actorIDs) {
+        List<Player> array = actorIDs.Select(id=> (Player)PlayerManager.instance.InvokeMethod("GetPlayerWithActorID",id)).ToList();
         if(array.Any(p => p.data.stats.GetRootData().lockedCard!=null)) {
             array.ForEach(player => {
                 UnityEngine.Debug.Log(player.data.stats.GetRootData().lockedCard);

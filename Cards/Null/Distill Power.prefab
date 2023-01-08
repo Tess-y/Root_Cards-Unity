@@ -95,9 +95,10 @@ MonoBehaviour:
   cardColor: {r: 0.14509805, g: 0.14509805, b: 0.14509805, a: 1}
   categories:
   - {fileID: 11400000, guid: 9995a41091e26c14dbaf5700ede92c3a, type: 2}
+  - {fileID: 11400000, guid: d61171e440823854c95fe52aeab41aa2, type: 2}
   allowMultiple: 1
   blacklistedCategories: []
-  cardBase: {fileID: 1720757555582362, guid: ab7829e25091330408953c12456bfb86, type: 3}
+  cardBase: {fileID: 1720757555582362, guid: 5210418c033649645832c59f832e1e4e, type: 3}
   colorTheme: 4
   Key: Null_Power
   Hidden: 0
