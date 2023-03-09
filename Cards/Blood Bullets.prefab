@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b2bbcc09027464da20acbbb271927e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarityName: Common
+  rarityName: 
 --- !u!114 &114645847624926142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
   Hidden: 0
   Reassign: 1
   AntiCard: 0
+  IsCurse: 0
   Nullable: 1
   NeedsNull: 0
   PickPhaseOnly: 0
@@ -313,6 +314,8 @@ MonoBehaviour:
   ammoCap: -1
   bulletCap: -1
   wishes: 0
+  hpCulling: 0
+  nullsPerPoint: 0
   usedAmmo: 0
   invertion: 0
   Null_Health_multiplier: 1
@@ -322,6 +325,7 @@ MonoBehaviour:
   Null_gun_Reflects: 0
   Null_gun_Ammo: 0
   Null_Lifesteal: 0
+  Null_Revives: 0
 --- !u!114 &114193385136356738
 MonoBehaviour:
   m_ObjectHideFlags: 0

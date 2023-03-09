@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b2bbcc09027464da20acbbb271927e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarityName: Common
+  rarityName: 
 --- !u!114 &114645847624926142
 MonoBehaviour:
   m_ObjectHideFlags: 0
