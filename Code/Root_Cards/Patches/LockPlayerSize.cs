@@ -6,11 +6,9 @@ using UnboundLib;
 
 public class LockPlayerSize: MonoBehaviour {
 
-    internal Vector3 localScale;
 
-    void Start() {
-        localScale = GetComponentInParent<Player>().transform.localScale;
-        GetComponentInParent<Player>().data.maxHealth=0;
+    void FixedUpdate() {
+        GetComponentInParent<Player>().data.maxHealth=0.1f;
         GetComponentInParent<Player>().data.health=0;
     }
 }

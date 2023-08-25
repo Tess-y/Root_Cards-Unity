@@ -42,7 +42,7 @@ public class RootCards: BaseUnityPlugin {
     public static ConfigEntry<bool> Credits;
     private const string ModId = "com.Root.Cards";
     private const string ModName = "RootCards";
-    public const string Version = "1.3.5"; // What version are we On (major.minor.patch)?
+    public const string Version = "1.4.1"; // What version are we On (major.minor.patch)?
     internal static AssetBundle Assets;
     public const string ModInitials = "Root";
     public static RootCards instance { get; private set; }
@@ -67,6 +67,7 @@ public class RootCards: BaseUnityPlugin {
         harmony.PatchAll();
         instance=this;
         CardThemeLib.CardThemeLib.instance.CreateOrGetType("DarknessBlack", new CardThemeColor() { bgColor=new Color(0.1978f, 0.1088f, 0.1321f), targetColor=new Color(0.0978f, 0.1088f, 0.1321f) });
+        CardThemeLib.CardThemeLib.instance.CreateOrGetType("RootCake", new CardThemeColor() { bgColor=new Color(0.7134047f, 0f, 1f, 0.5176471f), targetColor=new Color(0.2971698f, 0.6546086f, 1f) });
         Assets=Jotunn.Utils.AssetUtils.LoadAssetBundleFromResources("rootassets", typeof(RootCards).Assembly);
         Assets.LoadAsset<GameObject>("PrefabPool").GetComponent<PhotonPool>().Regester();
         Assets.LoadAsset<GameObject>("CardResgester").GetComponent<CardResgester>().Regester();

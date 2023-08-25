@@ -23,10 +23,10 @@ public class TunnelVision: MonoBehaviour {
     }
 
     void Confuse() {
-        lastResolution=Optionshandler.resolution;
+        if((FullScreenMode)Optionshandler.fullScreen == FullScreenMode.ExclusiveFullScreen) Optionshandler.fullScreen = Optionshandler.FullScreenOption.WindowedFullScreen;
         running=true;
         odds=(int)((1/Time.fixedDeltaTime)*15);
-        Optionshandler.instance.SetResolution(new Resolution() { refreshRate=lastResolution.refreshRate, height=60, width=60 });
-        RootCards.instance.ExecuteAfterSeconds(2.5F, () => { Optionshandler.instance.SetResolution(lastResolution); running=false; });
+        Screen.SetResolution(60, 60, (FullScreenMode)Optionshandler.fullScreen);
+        RootCards.instance.ExecuteAfterSeconds(2.5F, () => { Optionshandler.instance.SetResolution(Optionshandler.resolution); running=false; });
     }
 }

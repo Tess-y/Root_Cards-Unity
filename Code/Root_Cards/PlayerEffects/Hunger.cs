@@ -11,8 +11,8 @@ internal class Hunger: ReversibleEffect {
 
     public override void OnAwake() {
         Hunger hunger = transform.parent.GetComponentInChildren<Hunger>();
+        hunger.hungerGrowth++;
         if(hunger!=this) {
-            hunger.hungerGrowth++;
             DestroyImmediate(gameObject);
         }
     }

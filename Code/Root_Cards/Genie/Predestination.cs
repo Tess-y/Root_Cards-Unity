@@ -9,15 +9,15 @@ public class Predestination: MonoBehaviour {
     int OldDraws;
     void Awake() {
         player=GetComponentInParent<Player>();
-        OldDraws=DrawNCards.DrawNCards.GetPickerDraws(player.teamID);
+        OldDraws=DrawNCards.DrawNCards.GetPickerDraws(player.playerID);
     }
 
     void Update() { 
-        if (player != null &&DrawNCards.DrawNCards.GetPickerDraws(player.teamID) != 1)
-            DrawNCards.DrawNCards.SetPickerDraws(player.teamID, 1);
+        if (player != null &&DrawNCards.DrawNCards.GetPickerDraws(player.playerID) != 1)
+            DrawNCards.DrawNCards.SetPickerDraws(player.playerID, 1);
     }
 
     void OnDestroy() {
-        DrawNCards.DrawNCards.SetPickerDraws(player.teamID, OldDraws);
+        DrawNCards.DrawNCards.SetPickerDraws(player.playerID, OldDraws);
     }
 }

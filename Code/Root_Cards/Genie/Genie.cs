@@ -55,7 +55,8 @@ public class Genie {
         List<UnboundLib.Utils.Card> allCards = UnboundLib.Utils.CardManager.cards.Values.ToList();
         List<CardItem> items = new List<CardItem>();
         foreach(UnboundLib.Utils.Card card in allCards) {
-            if(card!=null&&card.cardInfo!=CardResgester.ModCards["Genie"]&&UnboundLib.Utils.CardManager.IsCardActive(card.cardInfo)) {
+            if(card!=null&&card.cardInfo!=CardResgester.ModCards["Genie"] && card.cardInfo != CardResgester.ModCards["Cake_Divine"] && UnboundLib.Utils.CardManager.IsCardActive(card.cardInfo)
+                && (!(card.cardInfo is RootCardInfo cardInfo) || (cardInfo.Restricted && cardInfo.Key.StartsWith("Cake_") && UnboundLib.Utils.CardManager.IsCardActive(CardResgester.ModCards["Cake_Toggle"])))) {
                 items.Add(new CardItem(card));
             }
         }

@@ -9,6 +9,7 @@ public class RootCardInfo: CardInfo {
     [Header("Root Settings")]
     public string Key;
     public bool Hidden = false;
+    public bool Restricted = false;
     public bool Reassign = true;
     public bool AntiCard = false;
     public bool IsCurse = false;

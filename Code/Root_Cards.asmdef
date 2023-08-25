@@ -14,7 +14,8 @@
         "PickNCards",
         "RoundsWithFriends",
         "TabInfo",
-        "PlayerTimeScale"
+        "PlayerTimeScale",
+        "DeckCustomization"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
