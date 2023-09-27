@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b2bbcc09027464da20acbbb271927e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarityName: 
+  rarityName: Exotic
 --- !u!114 &114645847624926142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   colorTheme: 8
   Key: Genie
   Hidden: 0
+  Restricted: 0
   Reassign: 0
   AntiCard: 0
   IsCurse: 0
@@ -317,6 +318,7 @@ MonoBehaviour:
   nullsPerPoint: 0
   usedAmmo: 0
   invertion: 0
+  simple: 0
   Null_Health_multiplier: 1
   Null_MovmentSpeed_multiplier: 1
   Null_Damage_multiplier: 1

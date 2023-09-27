@@ -20,6 +20,7 @@ public class RootStatModifiers: MonoBehaviour {
     public int nullsPerPoint;
     public bool usedAmmo = false;
     public bool invertion = false;
+    public bool simple = false;
 
 
         public float Null_Health_multiplier = 1;
@@ -57,6 +58,8 @@ public class RootStatModifiers: MonoBehaviour {
 
         if(knowledge)
             RootCards.instance.ExecuteAfterFrames(1, () => { characterStats.GetRootData().knowledge++; });
+        if(simple)
+            player.data.stats.GetRootData().simple = true;
 
         characterStats.GetRootData().hpCulling=1-((1-characterStats.GetRootData().hpCulling)*(1-hpCulling));
 

@@ -83,7 +83,9 @@ MonoBehaviour:
   cardName: Fractured Cake
   cardDestription: 'On the 25th of August, 1999 our system was born.
 
-    This card is to celebrate this anniversary.'
+    This card is to celebrate this anniversary.
+
+    <i>(Rare)</i>'
   cardStats:
   - positive: 1
     amount: +60%
@@ -96,7 +98,7 @@ MonoBehaviour:
   - positive: 1
     amount: +25%
     simepleAmount: 0
-    stat: Life Steall
+    stat: Life Steal
   - positive: 1
     amount: +30%
     simepleAmount: 0

@@ -95,6 +95,7 @@ MonoBehaviour:
   colorTheme: 6
   Key: Inversion
   Hidden: 0
+  Restricted: 0
   Reassign: 1
   AntiCard: 0
   IsCurse: 0
@@ -102,7 +103,7 @@ MonoBehaviour:
   NeedsNull: 0
   PickPhaseOnly: 0
   Tag: Root
-  Author: Tess
+  Author: Tessy
 --- !u!114 &114081461618018503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,6 +310,7 @@ MonoBehaviour:
   nullsPerPoint: 0
   usedAmmo: 0
   invertion: 1
+  simple: 0
   Null_Health_multiplier: 1
   Null_MovmentSpeed_multiplier: 1
   Null_Damage_multiplier: 1

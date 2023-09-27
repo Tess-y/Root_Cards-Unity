@@ -81,7 +81,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundDisableBlockBasic: 0
   cardName: Fractured Cake
-  cardDestription: Turn off to disable Root's birthday celebration
+  cardDestription: 'Turn off to disable Root''s birthday celebration
+
+
+    !0 raritys of the cake to collect!'
   cardStats: []
   rarity: 2
   cardArt: {fileID: 0}
@@ -95,6 +98,7 @@ MonoBehaviour:
   colorTheme: 0
   Key: Cake_Toggle
   Hidden: 0
+  Restricted: 0
   Reassign: 1
   AntiCard: 0
   IsCurse: 0

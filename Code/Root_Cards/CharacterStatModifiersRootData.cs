@@ -17,6 +17,9 @@ public class CharacterStatModifiersRootData {
     public float hpCulling;
     public int nullsPerPoint;
     public NullData nullData;
+    public bool simple;
+    public CardInfo perpetualCard;
+    public CardInfo DelayedCard;
     internal string SteamID;
     public CharacterStatModifiersRootData() {
         reset();
@@ -37,6 +40,9 @@ public class CharacterStatModifiersRootData {
         hpCulling=0;
         nullsPerPoint=0;
         nullData=new NullData();
+        simple=false;
+        perpetualCard=null;
+        DelayedCard = null;
     }
 
     public class NullData {

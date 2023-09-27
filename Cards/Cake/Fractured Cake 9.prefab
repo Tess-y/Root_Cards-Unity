@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7816482473021563501}
   - component: {fileID: 114969577739340399}
   - component: {fileID: 114737029165672358}
+  - component: {fileID: 114978731421377720}
   - component: {fileID: 114193385136356738}
   m_Layer: 0
   m_Name: Fractured Cake 9
@@ -83,7 +84,9 @@ MonoBehaviour:
   cardName: Fractured Cake
   cardDestription: 'On the 25th of August, 1999 our system was born.
 
-    This card is to celebrate this anniversary.'
+    This card is to celebrate this anniversary.
+
+    <i>(Divine)</i>'
   cardStats:
   - positive: 1
     amount: +100%
@@ -96,7 +99,7 @@ MonoBehaviour:
   - positive: 1
     amount: +50%
     simepleAmount: 0
-    stat: Life Steall
+    stat: Life Steal
   - positive: 1
     amount: +70%
     simepleAmount: 0
@@ -179,7 +182,7 @@ MonoBehaviour:
   remainingRespawns: 0
   tasteOfBloodSpeed: 1
   rageSpeed: 1
-  attackSpeedMultiplier: 0.4
+  attackSpeedMultiplier: 1
   slowPart: {fileID: 0}
 --- !u!114 &114200975647727354
 MonoBehaviour:
@@ -224,7 +227,7 @@ MonoBehaviour:
   reloadTimeAdd: 0
   recoilMuiltiplier: 1
   knockback: 1
-  attackSpeed: 1
+  attackSpeed: 0.4
   projectileSpeed: 1
   projectielSimulatonSpeed: 1
   gravity: 1
@@ -352,6 +355,7 @@ MonoBehaviour:
   nullsPerPoint: 0
   usedAmmo: 0
   invertion: 0
+  simple: 0
   Null_Health_multiplier: 1
   Null_MovmentSpeed_multiplier: 1
   Null_Damage_multiplier: 1
@@ -360,6 +364,23 @@ MonoBehaviour:
   Null_gun_Ammo: 0
   Null_Lifesteal: 0
   Null_Revives: 0
+--- !u!114 &114978731421377720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043437007509817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac4faeec8f2168941b00a9569b638e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardInfo: {fileID: 0}
+  gun: {fileID: 0}
+  cardStats: {fileID: 0}
+  statModifiers: {fileID: 0}
+  block: {fileID: 0}
 --- !u!114 &114193385136356738
 MonoBehaviour:
   m_ObjectHideFlags: 0

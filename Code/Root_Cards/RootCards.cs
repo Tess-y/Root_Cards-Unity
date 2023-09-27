@@ -42,7 +42,7 @@ public class RootCards: BaseUnityPlugin {
     public static ConfigEntry<bool> Credits;
     private const string ModId = "com.Root.Cards";
     private const string ModName = "RootCards";
-    public const string Version = "1.4.1"; // What version are we On (major.minor.patch)?
+    public const string Version = "1.6.0"; // What version are we On (major.minor.patch)?
     internal static AssetBundle Assets;
     public const string ModInitials = "Root";
     public static RootCards instance { get; private set; }
@@ -80,6 +80,7 @@ public class RootCards: BaseUnityPlugin {
         NullManager.instance.RegesterOnAddCallback(OnNullAdd);
 
         GameModeManager.AddHook(GameModeHooks.HookPlayerPickEnd, (gm) => ExtraPicks());
+        GameModeManager.AddHook(GameModeHooks.HookPlayerPickStart, (gm) => { StartCoroutine(NoBlock.HideChocieBlock()); return new List<object>().GetEnumerator();});
         GameModeManager.AddHook(GameModeHooks.HookPickEnd, (gm) => Genie.WaitTillShopDone());
         GameModeManager.AddHook(GameModeHooks.HookGameStart, GameStart);
         GameModeManager.AddHook(GameModeHooks.HookPointEnd, PointEnd);

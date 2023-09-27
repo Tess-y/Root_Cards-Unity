@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b2bbcc09027464da20acbbb271927e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarityName: Mythical
+  rarityName: Legendary
 --- !u!114 &114645847624926142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,13 +98,14 @@ MonoBehaviour:
   colorTheme: 8
   Key: Genie_Greed
   Hidden: 1
+  Restricted: 0
   Reassign: 1
   AntiCard: 0
   IsCurse: 0
   Nullable: 1
   NeedsNull: 0
   PickPhaseOnly: 1
-  Tag: Root
+  Tag: Genie
   Author: Lilith
 --- !u!114 &114081461618018503
 MonoBehaviour:
@@ -312,6 +313,7 @@ MonoBehaviour:
   nullsPerPoint: 0
   usedAmmo: 0
   invertion: 0
+  simple: 0
   Null_Health_multiplier: 1
   Null_MovmentSpeed_multiplier: 1
   Null_Damage_multiplier: 1

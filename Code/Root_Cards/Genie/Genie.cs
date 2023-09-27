@@ -13,6 +13,9 @@ using CardChoiceSpawnUniqueCardPatch.CustomCategories;
 using static CardInfo;
 using UnboundLib.Utils;
 using ModdingUtils.Utils;
+using Nullmanager;
+using UnityEngine.Rendering;
+using UnboundLib.GameModes;
 
 public class Genie {
     public static Shop Genie_Shop;
@@ -56,7 +59,8 @@ public class Genie {
         List<CardItem> items = new List<CardItem>();
         foreach(UnboundLib.Utils.Card card in allCards) {
             if(card!=null&&card.cardInfo!=CardResgester.ModCards["Genie"] && card.cardInfo != CardResgester.ModCards["Cake_Divine"] && UnboundLib.Utils.CardManager.IsCardActive(card.cardInfo)
-                && (!(card.cardInfo is RootCardInfo cardInfo) || (cardInfo.Restricted && cardInfo.Key.StartsWith("Cake_") && UnboundLib.Utils.CardManager.IsCardActive(CardResgester.ModCards["Cake_Toggle"])))) {
+                && card.cardInfo.name != "Half Ass Copy Cat"
+                && (!(card.cardInfo is RootCardInfo cardInfo) || !(cardInfo.Restricted && cardInfo.Key.StartsWith("Cake_") && !UnboundLib.Utils.CardManager.IsCardActive(CardResgester.ModCards["Cake_Toggle"])))) {
                 items.Add(new CardItem(card));
             }
         }
@@ -102,8 +106,10 @@ public class Genie {
                 if(ShopManager.instance.PlayerIsInShop(p))
                     done=false;
             });
-            if(time<=0)
+            if(time <= 0) {
                 ShopManager.instance.HideAllShops();
+                done = true;
+            }
 
         }
         GameObject.Destroy(gameObject);
@@ -187,6 +193,7 @@ internal class CardItem: Purchasable {
         bool can_eternity = !card.categories.Contains(CustomCardCategories.instance.CardCategory("CardManipulation"))&&!card.categories.Contains(CustomCardCategories.instance.CardCategory("cantEternity"));
         List<RootCardInfo> Outcome = CardResgester.ModCards.Values.Where(c => c.categories.Contains(CustomCardCategories.instance.CardCategory("GenieOutcome"))&&
             (c.allowMultiple||!player.data.currentCards.Contains(c))&&
+            (c.Key != "Genie_Debt" || GameModeManager.CurrentHandler.GetTeamScore(player.teamID).rounds > 0) &&
             (can_eternity||c.Key!="Genie_Eternity")&&GetDistance(c.rarity, card.rarity)<6).ToList();
         if(r.Next(100)>=98||Outcome.Count==0) {
             ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, CardResgester.ModCards["Empty_Lamp"], false, "", 2f, 2f);
@@ -209,13 +216,30 @@ internal class CardItem: Purchasable {
         for(int i = 0; i<Outcome.Count; i++) {
             result-=odds[i];
             UnityEngine.Debug.Log(odds[i]);
-            if(result<=0f) {
+            if(result <= 0f) {
                 var oCard = Outcome[i];
-                if(oCard.Key=="Genie_Greed")
+                if(oCard.Key == "Genie_Greed")
                     ModdingUtils.Utils.Cards.instance.RemoveAllCardsFromPlayer(player);
                 ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, oCard, false, "", 2f, 2f);
-                if(oCard.Key=="Genie_Smiles")
+                if(oCard.Key == "Genie_Smiles")
                     ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, card, false, "", 2f, 2f);
+                if(oCard.Key == "Genie_Gift")
+                    ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, ModdingUtils.Utils.Cards.instance.GetRandomCardWithCondition(
+                        player, player.data.weaponHandler.gun, player.data.weaponHandler.gun.GetComponentInChildren<GunAmmo>(),player.data,player.data.healthHandler,
+                        player.GetComponent<Gravity>(),player.data.block,player.data.stats,
+                        (cardInfo,_0,_1,_2,_3,_4,_5,_6,_7) => { return cardInfo.rarity == CardInfo.Rarity.Common; },0), false, "", 2f, 2f);
+                if(oCard.Key == "Genie_Shared")
+                    PlayerManager.instance.players.ForEach(p => { if(p.playerID != player.playerID)
+                            ModdingUtils.Utils.Cards.instance.AddCardToPlayer(p, card, false, "", 2f, 2f);
+                    });
+                if(oCard.Key == "Genie_Defective") {
+                    ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player,NullManager.instance.GetNullCardInfo(card.name, player), false, "", 2f, 2f);
+                    return;
+                }
+                if(oCard.Key == "Genie_Delayed") {
+                    player.data.stats.GetRootData().DelayedCard = card;
+                    return;
+                }
                 break;
             }
         }

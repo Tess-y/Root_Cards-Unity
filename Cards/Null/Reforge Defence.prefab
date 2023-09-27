@@ -95,13 +95,15 @@ MonoBehaviour:
   colorTheme: 2
   Key: Reforge_Defence
   Hidden: 0
+  Restricted: 0
   Reassign: 1
   AntiCard: 0
+  IsCurse: 0
   Nullable: 0
   NeedsNull: 1
   PickPhaseOnly: 0
   Tag: Root
-  Author: Tess
+  Author: Tessy
 --- !u!114 &114081461618018503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,8 +306,11 @@ MonoBehaviour:
   ammoCap: -1
   bulletCap: -1
   wishes: 0
+  hpCulling: 0
+  nullsPerPoint: 0
   usedAmmo: 0
   invertion: 0
+  simple: 0
   Null_Health_multiplier: 1
   Null_MovmentSpeed_multiplier: 1
   Null_Damage_multiplier: 1
@@ -313,6 +318,7 @@ MonoBehaviour:
   Null_gun_Reflects: 0
   Null_gun_Ammo: 0
   Null_Lifesteal: 0.1
+  Null_Revives: 0
 --- !u!114 &114193385136356738
 MonoBehaviour:
   m_ObjectHideFlags: 0

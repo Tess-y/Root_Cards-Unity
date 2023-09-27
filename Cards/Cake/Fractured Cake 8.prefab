@@ -83,7 +83,9 @@ MonoBehaviour:
   cardName: Fractured Cake
   cardDestription: 'On the 25th of August, 1999 our system was born.
 
-    This card is to celebrate this anniversary.'
+    This card is to celebrate this anniversary.
+
+    <i>(Mythical)</i>'
   cardStats:
   - positive: 1
     amount: +90%
@@ -96,7 +98,7 @@ MonoBehaviour:
   - positive: 1
     amount: +40%
     simepleAmount: 0
-    stat: Life Steall
+    stat: Life Steal
   - positive: 1
     amount: +60%
     simepleAmount: 0
@@ -175,7 +177,7 @@ MonoBehaviour:
   remainingRespawns: 0
   tasteOfBloodSpeed: 1
   rageSpeed: 1
-  attackSpeedMultiplier: 0.55
+  attackSpeedMultiplier: 1
   slowPart: {fileID: 0}
 --- !u!114 &114200975647727354
 MonoBehaviour:
@@ -220,7 +222,7 @@ MonoBehaviour:
   reloadTimeAdd: 0
   recoilMuiltiplier: 1
   knockback: 1
-  attackSpeed: 1
+  attackSpeed: 0.55
   projectileSpeed: 1
   projectielSimulatonSpeed: 1
   gravity: 1
