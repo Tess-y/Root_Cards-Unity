@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3496397849252997619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3496397849252997629}
+  - component: {fileID: 3496397849252997618}
+  m_Layer: 0
+  m_Name: NulledCards
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3496397849252997629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3496397849252997619}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -29.02528, y: 8.299046, z: -15.357864}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3496397849252997618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3496397849252997619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb36c9439d974d84498fdfaa9a456f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardsToRegester:
+  - {fileID: 114722944486319090, guid: 6ce6169134964794597dda7b91658544, type: 3}
+  - {fileID: 114722944486319090, guid: 7ea16fb8aa3a5fc4899e421c818b1820, type: 3}
+  - {fileID: 114722944486319090, guid: 6209fdd92dcdaa84682ff1daf5624deb, type: 3}
+  - {fileID: 114722944486319090, guid: 83718796114741a428bdbc40eae1e839, type: 3}
+  - {fileID: 114426292948290742, guid: 23da64c89b6311044a5b1d536bb1cadf, type: 3}
+  - {fileID: 114722944486319090, guid: 53dd51641e07e874d8f0a459b418b619, type: 3}
+  - {fileID: 114722944486319090, guid: e31906a9d8f68c4499823b2763e4cf35, type: 3}
+  - {fileID: 114722944486319090, guid: d95ce068c0a3a8e49b20868e702678a4, type: 3}
+  - {fileID: 114722944486319090, guid: 8af74846933736445b8fababbe40b880, type: 3}
+  - {fileID: 114722944486319090, guid: 2c87692f84ddfe04bad75d4f7a81c2f9, type: 3}
+  - {fileID: 114722944486319090, guid: 3790115a92872b34fa564f2e1e8c4fc9, type: 3}

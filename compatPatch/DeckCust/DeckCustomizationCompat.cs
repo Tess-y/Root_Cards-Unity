@@ -1,11 +1,11 @@
 ﻿using BepInEx;
 using HarmonyLib;
+using RootCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 [BepInDependency("pykess.rounds.plugins.deckcustomization", BepInDependency.DependencyFlags.HardDependency)]
-[BepInPlugin("root.DeckCustomizationCompat", "DeckCustomizationCompat", "1.0.0")]
+[BepInPlugin("root.DeckCustomizationCompat", "DeckCustomizationCompat", "1.0.1")]
 [BepInProcess("Rounds.exe")]
 [Serializable]
 [HarmonyPatch(typeof(DeckCustomization.DeckCustomization))]

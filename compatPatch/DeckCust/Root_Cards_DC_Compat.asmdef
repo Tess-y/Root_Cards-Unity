@@ -2,7 +2,7 @@
     "name": "Root_Cards_DC_Compat",
     "references": [
         "DeckCustomization",
-        "Root_Cards"
+        "Root Core Modual"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],

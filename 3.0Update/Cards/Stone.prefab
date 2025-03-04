@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &879727607888185316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 879727607888185322}
+  - component: {fileID: 879727607888185317}
+  m_Layer: 0
+  m_Name: Stone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &879727607888185322
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879727607888185316}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -29.02528, y: 8.299046, z: -15.357864}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &879727607888185317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879727607888185316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb36c9439d974d84498fdfaa9a456f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardsToRegester:
+  - {fileID: 114722944486319090, guid: a029d43f3cd45b04da1de8b13e109623, type: 3}
+  - {fileID: 114722944486319090, guid: 545b5477575ae614e8b51d330c69ffdc, type: 3}
+  - {fileID: 114722944486319090, guid: faf04b961768e02438081900a54ba10a, type: 3}
+  - {fileID: 114722944486319090, guid: ef34aeb36fe912d4fa507c0d823c9245, type: 3}
+  - {fileID: 114722944486319090, guid: 0685ace231bbf9243bf737b4d62b83a4, type: 3}
+  - {fileID: 114722944486319090, guid: b2ffd49f409c913469fb4d99b2780ef3, type: 3}
+  - {fileID: 114722944486319090, guid: 769530e7fb123b14598c2368933c5b3d, type: 3}
+  - {fileID: 114722944486319090, guid: 7bbee87c932efa242ac580ce0ad2297e, type: 3}

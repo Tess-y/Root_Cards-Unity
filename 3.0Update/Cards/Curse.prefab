@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6237804321130966186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6237804321130966180}
+  - component: {fileID: 6237804321130966187}
+  m_Layer: 0
+  m_Name: Curse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6237804321130966180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6237804321130966186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -29.02528, y: 8.299046, z: -15.357864}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6237804321130966187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6237804321130966186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb36c9439d974d84498fdfaa9a456f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardsToRegester:
+  - {fileID: 114722944486319090, guid: 5df386401481de04eaa350d7c99109e2, type: 3}
+  - {fileID: 114722944486319090, guid: 2f5227f42dec8494bae6581955f86b7b, type: 3}
+  - {fileID: 114722944486319090, guid: bada36c97a560f040a155db6e777978f, type: 3}
+  - {fileID: 114722944486319090, guid: faccd3e7876864c40b4d434516d50be8, type: 3}
+  - {fileID: 114722944486319090, guid: 8e9f4967650a30f47a39f11c6c782659, type: 3}
+  - {fileID: 114722944486319090, guid: 8c06e60e939c91341ade53a698aa67c3, type: 3}

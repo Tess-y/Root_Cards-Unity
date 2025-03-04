@@ -1,0 +1,33 @@
+{
+    "name": "Root Core Modual",
+    "references": [
+        "UnboundLib",
+        "ModdingUtils",
+        "RarityLib",
+        "CardThemeLib",
+        "WillsWackyManagers",
+        "TabInfo",
+        "NullManager",
+        "ClassesManagerReborn",
+        "Unity.TextMeshPro",
+        "CardChoiceSpawnUniqueCardPatch",
+        "ItemShops",
+        "PickNCards"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "PhotonRealtime.dll",
+        "0Harmony.dll",
+        "BepInEx.dll",
+        "PhotonUnityNetworking.dll",
+        "Photon3Unity3D.dll",
+        "Assembly-CSharp-firstpass.dll",
+        "Assembly-CSharp.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
