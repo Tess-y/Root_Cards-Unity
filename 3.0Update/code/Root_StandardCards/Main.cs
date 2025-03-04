@@ -11,7 +11,7 @@ namespace RootStandardCards {
 	public class Main:BaseUnityPlugin {
 		private const string ModId = "Systems.R00t.Standard";
 		private const string ModName = "Root Standard Cards ";
-		public const string Version = "1.0.1";
+		public const string Version = "1.1.0";
 
 		void Awake() {
 			var harmony = new Harmony(ModId);

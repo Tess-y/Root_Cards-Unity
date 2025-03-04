@@ -17,7 +17,7 @@ namespace RootNulledCards {
 	public class Main:BaseUnityPlugin {
 		private const string ModId = "Systems.R00t.Nulls";
 		private const string ModName = "Nulled Cards";
-		public const string Version = "1.0.0";
+		public const string Version = "1.1.0";
 
 		void Awake() {
 			var harmony = new Harmony(ModId);

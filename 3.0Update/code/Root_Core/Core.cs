@@ -34,7 +34,7 @@ namespace RootCore {
     public class Core:BaseUnityPlugin {
         private const string ModId = "Systems.R00t.CoreModual";
         private const string ModName = "Root Core";
-        public const string Version = "1.0.1";
+        public const string Version = "1.1.0";
         public static ConfigEntry<bool> DEBUG;
         public static bool Credits;
         public static Core instance;

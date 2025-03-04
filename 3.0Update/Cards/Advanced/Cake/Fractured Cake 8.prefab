@@ -114,7 +114,7 @@ MonoBehaviour:
   categories: []
   allowMultiple: 0
   blacklistedCategories: []
-  cardBase: {fileID: 1720757555582362, guid: be7a62aa6acffc64fbf9f53542f91f2c, type: 3}
+  cardBase: {fileID: 1720757555582362, guid: 83001b3df55509442ae77778764c7977, type: 3}
   colorTheme: 0
   cardRarity: 8
   Key: Cake_Mythical

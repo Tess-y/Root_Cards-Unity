@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 114737029165672358}
   - component: {fileID: 114193385136356738}
   - component: {fileID: 114908535697240472}
+  - component: {fileID: 652613992654153538}
   m_Layer: 0
   m_Name: Anything
   m_TagString: Untagged
@@ -86,7 +87,7 @@ MonoBehaviour:
   cardBase: {fileID: 1720757555582362, guid: ab7829e25091330408953c12456bfb86, type: 3}
   colorTheme: 4
   cardRarity: 1
-  Key: SANITY Anything
+  Key: Anything
   Hidden: 0
   Restricted: 0
   Reassign: 0
@@ -373,3 +374,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fancyIcon: {fileID: 1790492772407996393, guid: 4d81c5e47d57b5547821cc84af9c8561,
     type: 3}
+--- !u!114 &652613992654153538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043437007509817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b61636c3abf93ac4ebaa6d01e9df9b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

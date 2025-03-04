@@ -14,7 +14,7 @@ namespace RootDemonicCards {
     public class Main:BaseUnityPlugin {
         private const string ModId = "Systems.R00t.DemonicCards";
         private const string ModName = "Demonic Cards";
-        public const string Version = "1.0.0";
+        public const string Version = "1.1.0";
 
         public static AssetBundle Assets;
 
