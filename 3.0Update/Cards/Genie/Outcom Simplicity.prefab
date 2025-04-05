@@ -76,7 +76,7 @@ MonoBehaviour:
   sourceCard: {fileID: 0}
   cardColor: {r: 0.14509805, g: 0.14509805, b: 0.14509805, a: 1}
   categories:
-  - {fileID: 11400000, guid: ee7e44488e623b64f8b4d359385dc876, type: 2}
+  - {fileID: 11400000, guid: a5310bc1bd95c904bac6a68a89637ed7, type: 2}
   - {fileID: 11400000, guid: 0754f2b68f643044899887c12ede4d2c, type: 2}
   allowMultiple: 0
   blacklistedCategories: []
@@ -94,6 +94,10 @@ MonoBehaviour:
   PickPhaseOnly: 1
   Tag: Genie
   Author: Lilith
+  Build: 1
+  StartDisabled: 0
+  Perminent: 0
+  AlternetSource: {fileID: 0}
 --- !u!114 &114081461618018503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +305,11 @@ MonoBehaviour:
   usedAmmo: 0
   invertion: 0
   simple: 1
+  damageCap: 0
+  damageCapWindow: 0
+  AddObjectToOpponents: {fileID: 0}
+  AddObjectToTeam: {fileID: 0}
+  AddObjectToFreinds: {fileID: 0}
   Null_Health_multiplier: 1
   Null_MovmentSpeed_multiplier: 1
   Null_Damage_multiplier: 1

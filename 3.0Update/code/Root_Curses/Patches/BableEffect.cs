@@ -9,7 +9,6 @@ namespace RootCurses.Patches {
     public class BableEffect {
         public static char[] allChars = "1234567890+-*/=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTU?WXYZ?.,".ToCharArray();
         public static void Prefix(CardVisuals __instance, bool setSelected, bool ___isSelected) {
-            Core.Debug("BABLE");
             if(setSelected != ___isSelected && PlayerManager.instance.players.Any(p => p.data.view.IsMine && p.HasCard("Babel"))) {
                 var texts = __instance.GetComponentsInChildren<TextMeshProUGUI>();
                 var random = new Random();

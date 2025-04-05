@@ -7,8 +7,8 @@ using RootCore.CardConditions;
 using Steamworks;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using TMPro;
@@ -34,11 +34,10 @@ namespace RootCore {
     public class Core:BaseUnityPlugin {
         private const string ModId = "Systems.R00t.CoreModual";
         private const string ModName = "Root Core";
-        public const string Version = "1.1.0";
+        public const string Version = "1.3.0";
         public static ConfigEntry<bool> DEBUG;
         public static bool Credits;
         public static Core instance;
-        public static List<BaseUnityPlugin> plugins;
         private static CardCategory[] _noLotteryCategories;
 
         public static CardCategory[] NoLotteryCategories {
@@ -58,8 +57,6 @@ namespace RootCore {
 
             var harmony = new Harmony(ModId);
             harmony.PatchAll(); 
-            plugins = (List<BaseUnityPlugin>)typeof(BepInEx.Bootstrap.Chainloader).GetField("_plugins", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
-
         }
 
         void Start() {
@@ -68,7 +65,7 @@ namespace RootCore {
             CardThemeLib.CardThemeLib.instance.CreateOrGetType("Abnormality", new CardThemeColor() { bgColor = new Color(0.212f, 0.031f, 0.031f), targetColor = new Color(0.933f, 0.949f, 0.612f) });
             CardThemeLib.CardThemeLib.instance.CreateOrGetType("Inscryption", new CardThemeColor() { bgColor = new Color(0.51f, 0.455f, 0.333f), targetColor = new Color(0.641f, 0.222f, 0.143f) });
             
-            if(plugins.Exists(plugin => plugin.Info.Metadata.GUID == "com.willuwontu.rounds.tabinfo")) {
+            if(BepInEx.Bootstrap.Chainloader.Plugins.Exists(plugin => plugin.Info.Metadata.GUID == "com.willuwontu.rounds.tabinfo")) {
                 TabInfoRegesterer.Setup();
             }
 
@@ -83,8 +80,12 @@ namespace RootCore {
         }
 
         public static void RegesterCards(CardList list, bool betaOverwriteDoNotUse = false) {
+            Type plugin = new StackTrace().GetFrame(1).GetMethod().ReflectedType;
+            string modVertion = ((BepInPlugin)plugin.GetCustomAttribute(typeof(BepInPlugin))).Version.ToString();
+
             foreach(RootCardInfo card in list.CardsToRegester) {
                 if(card == null || !card.Build) continue;
+                card.modVertion = modVertion;
                 card.name = $"Root-Card  {card.Key} ({card.Tag})" + (betaOverwriteDoNotUse?"  BETA":"");
                 if(betaOverwriteDoNotUse && CardList.ModCards.ContainsKey(card.Key)) {
                     CardManager.cards.Remove(CardList.ModCards[card.Key].name);
@@ -111,7 +112,7 @@ namespace RootCore {
                     WillInterface.cardsSkippedForRerolls(card);
 
                 card.Setup();
-                if(card.GetComponent<CardCondition>() is CardCondition condition) {
+                foreach(CardCondition condition in card.GetComponents<CardCondition>()) {
                     ModdingUtils.Utils.Cards.instance.AddCardValidationFunction((player, cardinfo) => cardinfo != card || condition.IsPlayerAllowedCard(player));
                 }
             }
@@ -170,6 +171,8 @@ namespace RootCore {
 
 
         public static void Debug(object message) {
+            if(message is null)
+                message = "{{NULL}}";
             if(DEBUG.Value) {
                 UnityEngine.Debug.Log("ROOT=>" + message);
             }

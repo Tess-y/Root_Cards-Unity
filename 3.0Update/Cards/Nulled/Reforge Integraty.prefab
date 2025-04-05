@@ -81,7 +81,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundDisableBlockBasic: 0
   cardName: Reforge Integrity
-  cardDestription: Restore nulled out cards you've taken to their original state.
+  cardDestription: 'Restore nulled out cards you''ve taken to their original state.
+
+    <i>(can only be taken once)'
   cardStats: []
   rarity: 2
   cardArt: {fileID: 5058539191376921230, guid: 3be999c5573f0b1458e7d083073d99a3, type: 3}
@@ -90,7 +92,7 @@ MonoBehaviour:
   cardColor: {r: 0.14509805, g: 0.14509805, b: 0.14509805, a: 1}
   categories:
   - {fileID: 11400000, guid: 30a262efb5446ac4c8e0f7683b80fe83, type: 2}
-  allowMultiple: 1
+  allowMultiple: 0
   blacklistedCategories: []
   cardBase: {fileID: 1720757555582362, guid: ab7829e25091330408953c12456bfb86, type: 3}
   colorTheme: 4
@@ -101,7 +103,7 @@ MonoBehaviour:
   Reassign: 0
   AntiCard: 0
   IsCurse: 0
-  Nullable: 1
+  Nullable: 0
   NeedsNull: 1
   PickPhaseOnly: 0
   Tag: Root

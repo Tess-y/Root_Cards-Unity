@@ -16,7 +16,7 @@ namespace Genie {
     public class Main:BaseUnityPlugin {
         private const string ModId = "Systems.R00t.Genie";
         private const string ModName = "Genie";
-        public const string Version = "1.1.0";
+        public const string Version = "1.1.3";
 
 
         void Awake() {

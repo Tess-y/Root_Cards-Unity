@@ -25,7 +25,6 @@ namespace RootStandardCards.Patches {
             if(previousPointWinners.Count != winningTeamIDs.Length) return;
             foreach(Player player in PlayerManager.instance.players) {
                 if(player != null && player.GetComponentInChildren<ImpendingDoomEffect>() != null) {
-
                     previousPointWinners.Remove(player.teamID);
                 }
             }
@@ -39,8 +38,8 @@ namespace RootStandardCards.Patches {
         static void Prefix(RWFGameMode __instance, ref int[] winningTeamIDs) {
             winningTeamIDs = winningTeamIDs.Distinct().ToArray();
             foreach(Player player in PlayerManager.instance.players)
-                if(player != null && winningTeamIDs.Contains(player.teamID) && player.GetComponentInChildren<ImpendingDoomEffect>() != null)
-                    __instance.teamRounds[player.teamID] = __instance.teamRounds[player.teamID] - 1;
+                if(player != null && winningTeamIDs.Contains(player.teamID) && player.GetComponentInChildren<ImpendingDoomEffect>() != null) ;
+                  //  __instance.teamRounds[player.teamID] = __instance.teamRounds[player.teamID] - 1;
         }
     }
 }

@@ -32,6 +32,11 @@ namespace Genie {
 			CursedPlayers[player.playerID]++;
         }
 
+		internal static bool CanEternity(CardInfo card) {
+			if(card.cardName == "Shuffle") return false;
+            return !card.categories.Contains(CustomCardCategories.instance.CardCategory("CardManipulation")) && !card.categories.Contains(CustomCardCategories.instance.CardCategory("cantEternity")); 
+        }
+
 		internal static void GenieRerollAction(Player player, CardInfo[] originalCards) {
 			List<CardInfo> Outcome = originalCards.Where(c => c.categories.Contains(CustomCardCategories.instance.CardCategory("GenieOutcome"))).ToList();
 			if(Outcome.Count == 0)
@@ -67,15 +72,21 @@ namespace Genie {
 		internal static IEnumerator SetUpShop() {
 			List<UnboundLib.Utils.Card> allCards = UnboundLib.Utils.CardManager.cards.Values.ToList();
 			List<CardItem> items = new List<CardItem>();
-			foreach(UnboundLib.Utils.Card card in allCards) {
+            Core.Debug("Setting up shop");
+            foreach(UnboundLib.Utils.Card card in allCards) {
+                Core.Debug(card?.cardInfo.cardName);
 				if(card != null && card.cardInfo != CardList.GetCardInfo("Genie") && card.cardInfo != CardList.GetCardInfo("Efreet") && card.cardInfo != CardList.GetCardInfo("Cake_Divine") && UnboundLib.Utils.CardManager.IsCardActive(card.cardInfo)
-					&& card.cardInfo.name != "Half Ass Copy Cat"
-					&& (!(card.cardInfo is RootCardInfo cardInfo) || !(cardInfo.Restricted && cardInfo.Key.StartsWith("Cake_") && !UnboundLib.Utils.CardManager.IsCardActive(CardList.GetCardInfo("Cake_Toggle"))))) {
+					&& !card.cardInfo.cardName.ToLower().Contains("half ass copy cat")
+					&& !card.cardInfo.cardName.ToLower().Contains("wheel of fortune")
+					&& !card.cardInfo.cardName.ToLower().Contains("zero point")
+                    && (!(card.cardInfo is RootCardInfo cardInfo) || !(cardInfo.Restricted && cardInfo.Key.StartsWith("Cake_") && !UnboundLib.Utils.CardManager.IsCardActive(CardList.GetCardInfo("Cake_Toggle"))))) {
 					items.Add(new CardItem(card));
-				}
+                    Core.Debug("Added To Shop");
+                }
 			}
 			Genie_Shop.AddItems(items.Select(c => c.Card.cardInfo.cardName + c.Card.cardInfo.name).ToArray(), items.ToArray());
-			yield break;
+            Core.Debug("Finnished setting up shop");
+            yield break;
 		}
 
 		internal static IEnumerator WaitTillShopDone() {
@@ -196,12 +207,12 @@ namespace Genie {
 				oRarity = oRarity / rarity;
 			else
 				oRarity = rarity / oRarity;
-			UnityEngine.Debug.Log($"{r1},{r2} : {oRarity}");
+			Core.Debug($"Distence => {r1},{r2} : {oRarity}");
 			return oRarity - 1;
 		}
 		 
 		private List<RootCardInfo> GetValidOutcomes(Player player, CardInfo card) {
-            bool can_eternity = !card.categories.Contains(CustomCardCategories.instance.CardCategory("CardManipulation")) && !card.categories.Contains(CustomCardCategories.instance.CardCategory("cantEternity"));
+			bool can_eternity = GenieCard.CanEternity(card);
             List<RootCardInfo> Outcomes = CardList.GetCardsWithCondition(c => c.categories.Contains(CustomCardCategories.instance.CardCategory("GenieOutcome")) &&
 				(c.allowMultiple || !player.HasCard(c)) &&
 				(c.Key != "Genie_Debt" || GameModeManager.CurrentHandler.GetTeamScore(player.teamID).rounds > 0) &&
@@ -218,7 +229,7 @@ namespace Genie {
 				ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, CardList.GetCardInfo("Empty_Lamp"), false, "", 2f, 2f);
 				return;
 			}
-			UnityEngine.Debug.Log(Outcome.Count);
+			Core.Debug(Outcome.Count);
 			List<float> odds = new List<float>();
 
 			float rarity = RarityUtils.GetRarityData(card.rarity).relativeRarity;
@@ -232,14 +243,21 @@ namespace Genie {
 			var total = odds.Sum();
 
 			float result = UnityEngine.Random.Range(0f, total);
-			UnityEngine.Debug.Log($"Rolled:{result} out of {total}");
+			Core.Debug($"Rolled:{result} out of {total}");
 			for(int i = 0; i < Outcome.Count; i++) {
 				result -= odds[i];
-				UnityEngine.Debug.Log(odds[i]);
+				Core.Debug(odds[i]);
 				if(result <= 0f) {
 					var oCard = Outcome[i];
-					if(oCard.Key == "Genie_Greed" && player.GetRootData().lockedCard == null)
-						ModdingUtils.Utils.Cards.instance.RemoveCardsFromPlayer(player,player.data.currentCards.Where(c=>!c.categories.Contains(CustomCardCategories.instance.CardCategory("GenieOutcome"))).ToArray());
+                    Core.Debug(oCard.Key);
+					if(oCard.Key == "Genie_Greed" && player.GetRootData().lockedCard == null) {
+						ModdingUtils.Utils.Cards.instance.RemoveCardsFromPlayer(player, player.data.currentCards.Where(c => !c.categories.Contains(CustomCardCategories.instance.CardCategory("GenieOutcome"))).ToArray());
+						Unbound.Instance.ExecuteAfterSeconds(0.2f, () => {
+                            ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, oCard, false, "", 2f, 2f);
+                            ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, card, false, "", 2f, 2f);
+                        });
+                        return;
+					}
 					ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, oCard, false, "", 2f, 2f);
 					if(oCard.Key == "Genie_Smiles")
 						ModdingUtils.Utils.Cards.instance.AddCardToPlayer(player, card, false, "", 2f, 2f);
@@ -275,7 +293,7 @@ namespace Genie {
 			DoGenieWish(player, card);
 
 			Core.instance.StartCoroutine(ShowCard(player, card));
-			if(player.data.view.IsMine && !player.GetAdditionalData().bankAccount.HasFunds(GenieCard.wishes))
+			if(player.data.view.IsMine)
 				GenieCard.Genie_Shop.Hide();
 
 			return;

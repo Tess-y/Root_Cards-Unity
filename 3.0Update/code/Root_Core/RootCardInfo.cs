@@ -22,6 +22,9 @@ namespace RootCore {
         }
 
 
+        [HideInInspector]
+        public string modVertion;
+
         [Header("Root Settings")]
         public CardRarity cardRarity;
         public string Key;
@@ -47,7 +50,7 @@ namespace RootCore {
 
         public void Setup() {
             GetComponent<CardInfo>().GetAdditionalData().canBeReassigned = Reassign;
-            if(Core.plugins.Exists(plugin => plugin.Info.Metadata.GUID == "com.Root.Null")) {
+            if(BepInEx.Bootstrap.Chainloader.Plugins.Exists(plugin => plugin.Info.Metadata.GUID == "com.Root.Null")) {
                 if(AntiCard)
                     NullInterface.SetAntiCard(GetComponent<CardInfo>());
                 if(!Nullable)
@@ -65,6 +68,19 @@ namespace RootCore {
 
         public void Start() {
             if(AlternetSource != null) sourceCard = AlternetSource;
+
+            GameObject modVertionObj= new GameObject("ModVertionNumber");
+            modVertionObj.transform.parent = gameObject.GetComponentInChildren<CardVisuals>().transform.Find("Canvas/Front/Background");
+            modVertionObj.transform.localPosition = new Vector3(0, -775, 0);
+            modVertionObj.transform.localScale = Vector3.one;
+            modVertionObj.transform.eulerAngles = new Vector3(0, 180, 0);
+            var vertionText = modVertionObj.AddComponent<TextMeshProUGUI>();
+            vertionText.text = $"v<u>{modVertion}</u>";
+            vertionText.color = new Color(0.7607f, 0.5215f, 0.3049f);
+            vertionText.fontSize = 65;
+            vertionText.alignment = TextAlignmentOptions.Top;
+            modVertionObj.GetOrAddComponent<RectTransform>().sizeDelta = new Vector2(1000, 50);
+            modVertionObj.transform.parent = modVertionObj.transform.parent.parent;
             if(Core.Credits) {
                 GameObject modNameObj = new GameObject("ModNameText");
                 RectTransform[] allChildrenRecursive = gameObject.GetComponentsInChildren<RectTransform>();
