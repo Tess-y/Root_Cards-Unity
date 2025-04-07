@@ -5,9 +5,12 @@ using RarityLib.Utils;
 using RootCore;
 using System.Collections;
 using System.Linq;
+using System.Reflection;
 using UnboundLib.GameModes;
 using UnityEngine;
 
+
+[assembly: AssemblyVersionAttribute(RootNulledCards.Main.Version)]
 namespace RootNulledCards {
 
     [BepInDependency("Systems.R00t.CoreModual")]
@@ -17,7 +20,7 @@ namespace RootNulledCards {
 	public class Main:BaseUnityPlugin {
 		private const string ModId = "Systems.R00t.Nulls";
 		private const string ModName = "Nulled Cards";
-		public const string Version = "1.1.0";
+		public const string Version = "1.1.1";
 
 		void Awake() {
 			var harmony = new Harmony(ModId);

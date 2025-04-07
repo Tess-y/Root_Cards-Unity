@@ -1,8 +1,12 @@
 using BepInEx;
 using HarmonyLib;
 using RootCore;
+using System.Reflection;
 using UnityEngine;
 
+
+
+[assembly: AssemblyVersionAttribute(GlitchCards.Main.Version)]
 namespace GlitchCards {
 
     [BepInDependency("Systems.R00t.CoreModual")]

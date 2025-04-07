@@ -1,9 +1,11 @@
 using BepInEx;
 using HarmonyLib;
 using RootCore;
+using System.Reflection;
 using UnityEngine;
 
 
+[assembly: AssemblyVersionAttribute(RootStandardCards.Main.Version)]
 namespace RootStandardCards {
     [BepInDependency("Systems.R00t.CoreModual")]
     [BepInPlugin(ModId, ModName, Version)]
@@ -11,7 +13,7 @@ namespace RootStandardCards {
 	public class Main:BaseUnityPlugin {
 		private const string ModId = "Systems.R00t.Standard";
 		private const string ModName = "Root Standard Cards ";
-		public const string Version = "1.1.1";
+		public const string Version = "1.1.3";
 
 		void Awake() {
 			var harmony = new Harmony(ModId);

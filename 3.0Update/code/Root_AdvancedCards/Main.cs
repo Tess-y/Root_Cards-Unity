@@ -5,11 +5,13 @@ using RootCore;
 using RootCore.ArtStuffs;
 using System.Collections;
 using System.Linq;
+using System.Reflection;
 using UnboundLib.GameModes;
 using UnityEngine;
 
+[assembly: AssemblyVersionAttribute(RootAdvancedCards.Main.Version)]
 namespace RootAdvancedCards {
-
+    
     [BepInDependency("root.classes.manager.reborn")]
     [BepInDependency("Systems.R00t.CoreModual")]
     [BepInPlugin(ModId, ModName, Version)]
@@ -17,7 +19,7 @@ namespace RootAdvancedCards {
     public class Main:BaseUnityPlugin {
         private const string ModId = "Systems.R00t.Advanced";
         private const string ModName = "Root Advanced Cards";
-        public const string Version = "1.1.0";
+        public const string Version = "1.1.4";
 
 
         void Awake() {

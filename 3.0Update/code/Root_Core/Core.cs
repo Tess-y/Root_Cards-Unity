@@ -18,6 +18,8 @@ using UnboundLib.Utils;
 using UnboundLib.Utils.UI;
 using UnityEngine;
 
+
+[assembly: AssemblyVersionAttribute(RootCore.Core.Version)]
 namespace RootCore {
 
     [BepInDependency("com.willis.rounds.unbound")]
@@ -34,7 +36,7 @@ namespace RootCore {
     public class Core:BaseUnityPlugin {
         private const string ModId = "Systems.R00t.CoreModual";
         private const string ModName = "Root Core";
-        public const string Version = "1.3.0";
+        public const string Version = "1.4.0";
         public static ConfigEntry<bool> DEBUG;
         public static bool Credits;
         public static Core instance;
@@ -80,8 +82,8 @@ namespace RootCore {
         }
 
         public static void RegesterCards(CardList list, bool betaOverwriteDoNotUse = false) {
-            Type plugin = new StackTrace().GetFrame(1).GetMethod().ReflectedType;
-            string modVertion = ((BepInPlugin)plugin.GetCustomAttribute(typeof(BepInPlugin))).Version.ToString();
+
+            string modVertion = (new StackTrace().GetFrame(1).GetMethod().ReflectedType.Assembly.GetName().Version.ToString() + " ").Replace(".0 ", "");
 
             foreach(RootCardInfo card in list.CardsToRegester) {
                 if(card == null || !card.Build) continue;

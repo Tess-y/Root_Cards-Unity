@@ -1,8 +1,11 @@
 using BepInEx;
 using HarmonyLib;
 using RootCore;
+using System.Reflection;
 using UnityEngine;
 
+
+[assembly: AssemblyVersionAttribute(RootPotatoes.Main.Version)]
 namespace RootPotatoes {
 
     [BepInDependency("Systems.R00t.CoreModual")]

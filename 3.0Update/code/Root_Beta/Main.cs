@@ -1,8 +1,11 @@
 using BepInEx;
 using HarmonyLib;
 using RootCore;
+using System.Reflection;
 using UnityEngine;
 
+
+[assembly: AssemblyVersionAttribute(RootBeta.Main.Version)]
 namespace RootBeta {
 
     [BepInDependency("Systems.R00t.CoreModual")]
@@ -11,7 +14,7 @@ namespace RootBeta {
 	public class Main:BaseUnityPlugin {
 		private const string ModId = "Systems.R00t.Unstable";
 		private const string ModName = "Root Cards BETA";
-		public const string Version = "1.1.6";
+		public const string Version = "1.1.7";
 
 		void Awake() {
 			var harmony = new Harmony(ModId);

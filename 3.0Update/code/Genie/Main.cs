@@ -3,10 +3,13 @@ using HarmonyLib;
 using RootCore;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnboundLib.GameModes;
 using UnityEngine;
 using WillsWackyManagers.Utils;
 
+
+[assembly: AssemblyVersionAttribute(Genie.Main.Version)]
 namespace Genie {
 
     [BepInDependency("Systems.R00t.CoreModual")]
@@ -16,7 +19,7 @@ namespace Genie {
     public class Main:BaseUnityPlugin {
         private const string ModId = "Systems.R00t.Genie";
         private const string ModName = "Genie";
-        public const string Version = "1.1.3";
+        public const string Version = "1.1.4";
 
 
         void Awake() {

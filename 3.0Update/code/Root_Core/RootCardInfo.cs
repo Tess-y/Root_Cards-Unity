@@ -1,5 +1,4 @@
 using ModdingUtils.Extensions;
-using System.Linq;
 using TMPro;
 using UnboundLib;
 using UnityEngine;
@@ -68,56 +67,16 @@ namespace RootCore {
 
         public void Start() {
             if(AlternetSource != null) sourceCard = AlternetSource;
+            gameObject.GetComponentInChildren<CardVisuals>().transform.Find("Canvas/Front/ModVertionNumber").GetComponent<TextMeshProUGUI>().text = modVertion; 
 
-            GameObject modVertionObj= new GameObject("ModVertionNumber");
-            modVertionObj.transform.parent = gameObject.GetComponentInChildren<CardVisuals>().transform.Find("Canvas/Front/Background");
-            modVertionObj.transform.localPosition = new Vector3(0, -775, 0);
-            modVertionObj.transform.localScale = Vector3.one;
-            modVertionObj.transform.eulerAngles = new Vector3(0, 180, 0);
-            var vertionText = modVertionObj.AddComponent<TextMeshProUGUI>();
-            vertionText.text = $"v<u>{modVertion}</u>";
-            vertionText.color = new Color(0.7607f, 0.5215f, 0.3049f);
-            vertionText.fontSize = 65;
-            vertionText.alignment = TextAlignmentOptions.Top;
-            modVertionObj.GetOrAddComponent<RectTransform>().sizeDelta = new Vector2(1000, 50);
-            modVertionObj.transform.parent = modVertionObj.transform.parent.parent;
             if(Core.Credits) {
-                GameObject modNameObj = new GameObject("ModNameText");
-                RectTransform[] allChildrenRecursive = gameObject.GetComponentsInChildren<RectTransform>();
-                var edgeTransform = allChildrenRecursive.FirstOrDefault(obj => obj.gameObject.name == "EdgePart (1)");
-                if(edgeTransform != null) {
-                    GameObject bottomLeftCorner = edgeTransform.gameObject;
-                    modNameObj.gameObject.transform.SetParent(bottomLeftCorner.transform);
-                }
+                Transform modNameObj = gameObject.GetComponentInChildren<CardVisuals>().transform.Find("Canvas/Front/ModNameText");
+                modNameObj.gameObject.SetActive(true);
+                modNameObj.GetComponent<TextMeshProUGUI>().text = Tag;
 
-                TextMeshProUGUI modText = modNameObj.gameObject.AddComponent<TextMeshProUGUI>();
-                modText.text = Tag;
-                modNameObj.transform.localEulerAngles = new Vector3(0f, 0f, 135f);
-
-                modNameObj.transform.localScale = Vector3.one;
-                modNameObj.transform.localPosition = new Vector3(-50f, -50f, 0f);
-                modText.alignment = TextAlignmentOptions.Bottom;
-                modText.alpha = 0.1f;
-                modText.fontSize = 60;
-
-
-                modNameObj = new GameObject("AuthorNameText");
-                edgeTransform = allChildrenRecursive.FirstOrDefault(obj => obj.gameObject.name == "EdgePart (2)");
-                if(edgeTransform != null) {
-                    GameObject bottomLeftCorner = edgeTransform.gameObject;
-                    modNameObj.gameObject.transform.SetParent(bottomLeftCorner.transform);
-                }
-
-                modText = modNameObj.gameObject.AddComponent<TextMeshProUGUI>();
-                modText.text = $"Card Idea By:\n{Author}";
-                modText.autoSizeTextContainer = true;
-                modNameObj.transform.localEulerAngles = new Vector3(0f, 0f, 135f);
-
-                modNameObj.transform.localScale = Vector3.one;
-                modNameObj.transform.localPosition = new Vector3(-75f, -75f, 0f);
-                modText.alignment = TextAlignmentOptions.Bottom;
-                modText.alpha = 0.1f;
-                modText.fontSize = 54;
+                Transform modAuthorObj = gameObject.GetComponentInChildren<CardVisuals>().transform.Find("Canvas/Front/AuthorNameText");
+                modAuthorObj.gameObject.SetActive(true);
+                modNameObj.GetComponent<TextMeshProUGUI>().text = $"Card Idea By:\n{Author}";
             }
         }
 

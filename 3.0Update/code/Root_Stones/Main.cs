@@ -2,8 +2,11 @@ using BepInEx;
 using HarmonyLib;
 using RootCore;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
+
+[assembly: AssemblyVersionAttribute(RootStones.Main.Version)]
 namespace RootStones {
 
     [BepInDependency("root.classes.manager.reborn")]
@@ -13,7 +16,7 @@ namespace RootStones {
 	public class Main:BaseUnityPlugin {
 		private const string ModId = "Systems.R00t.InfinityStones";
 		private const string ModName = "Root Stones";
-		public const string Version = "1.2.0";
+		public const string Version = "1.2.1";
         public static AssetBundle Assets;
 		public static List<string> Stones = new List<string>() { "Time_Stone", "Mind_Stone", "Reality_Stone", "Space_Stone", "Soul_Stone", "Power_Stone" };
 

@@ -1,8 +1,11 @@
 using BepInEx;
 using HarmonyLib;
 using RootCore;
+using System.Reflection;
 using UnityEngine;
 
+
+[assembly: AssemblyVersionAttribute(RootCurses.Main.Version)]
 namespace RootCurses {
 
     [BepInDependency("Systems.R00t.CoreModual")]
@@ -13,7 +16,7 @@ namespace RootCurses {
 	public class Main:BaseUnityPlugin {
 		private const string ModId = "Systems.R00t.Curses";
 		private const string ModName = "Root Curses";
-		public const string Version = "1.1.0";
+		public const string Version = "1.1.1";
 
 		void Awake() {
 			var harmony = new Harmony(ModId);

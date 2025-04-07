@@ -1,4 +1,5 @@
 ﻿using ModdingUtils.Utils;
+using System;
 using System.Linq;
 using UnboundLib;
 using UnboundLib.Utils;
@@ -100,5 +101,10 @@ namespace RootCore {
             }
             return found;
         }
+
+        public static int IndexOf(this Array array, object value) {
+            return Array.IndexOf(array, value);
+        }
+
     }
 }

@@ -1,22 +1,26 @@
-﻿using ClassesManagerReborn;
-using RootCore;
-using System.Collections;
+﻿using RootCore;
+using System.Linq;
 
 
 namespace RootAdvancedCards {
-    public class CakeRestrictions:ClassHandler {
-        public override IEnumerator Init() {
-            ClassesRegistry.Register(CardList.GetCardInfo("Cake_Trinket"), CardType.Entry | CardType.NonClassCard);
-            ClassesRegistry.Register(CardList.GetCardInfo("Cake_Common"), CardType.Gate | CardType.NonClassCard, CardList.GetCardInfo("Cake_Trinket"));
-            ClassesRegistry.Register(CardList.GetCardInfo("Cake_Scarce"), CardType.Card | CardType.NonClassCard, CardList.GetCardInfo("Cake_Common"));
-            ClassesRegistry.Register(CardList.GetCardInfo("Cake_Uncommon"), CardType.Card | CardType.NonClassCard, CardList.GetCardInfo("Cake_Scarce"));
-            ClassesRegistry.Register(CardList.GetCardInfo("Cake_Exotic"), CardType.Card | CardType.NonClassCard, CardList.GetCardInfo("Cake_Uncommon"));
-            ClassesRegistry.Register(CardList.GetCardInfo("Cake_Rare"), CardType.Card | CardType.NonClassCard, CardList.GetCardInfo("Cake_Exotic"));
-            ClassesRegistry.Register(CardList.GetCardInfo("Cake_Epic"), CardType.Card | CardType.NonClassCard, CardList.GetCardInfo("Cake_Rare"));
-            ClassesRegistry.Register(CardList.GetCardInfo("Cake_Legendary"), CardType.Card | CardType.NonClassCard, CardList.GetCardInfo("Cake_Epic"));
-            ClassesRegistry.Register(CardList.GetCardInfo("Cake_Mythical"), CardType.Card | CardType.NonClassCard, CardList.GetCardInfo("Cake_Legendary"));
-            ClassesRegistry.Register(CardList.GetCardInfo("Cake_Divine"), CardType.Card | CardType.NonClassCard, CardList.GetCardInfo("Cake_Mythical"));
-            yield break;
+    public class CakeRestrictions {
+        public static string[] cakes = new string[10]{
+            "Cake_Trinket",
+            "Cake_Common",
+            "Cake_Scarce",
+            "Cake_Uncommon",
+            "Cake_Exotic",
+            "Cake_Rare",
+            "Cake_Epic",
+            "Cake_Legendary",
+            "Cake_Mythical",
+            "Cake_Divine"
+        };
+        public static bool CanHaveCake(Player player, RootCardInfo Cake) {
+            if(!Cake.Key.Contains("Cake_")) return true;
+            if(player is null) return false;
+            int cakesCount = player.data.currentCards.Where(card => card is RootCardInfo rootCard && rootCard.Key.StartsWith("Cake_")).Count();
+            return (cakes.IndexOf(Cake.Key) -3) < cakesCount;
         }
     }
 }
