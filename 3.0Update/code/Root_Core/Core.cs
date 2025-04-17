@@ -36,7 +36,7 @@ namespace RootCore {
     public class Core:BaseUnityPlugin {
         private const string ModId = "Systems.R00t.CoreModual";
         private const string ModName = "Root Core";
-        public const string Version = "1.4.0";
+        public const string Version = "1.4.2";
         public static ConfigEntry<bool> DEBUG;
         public static bool Credits;
         public static Core instance;
@@ -62,10 +62,10 @@ namespace RootCore {
         }
 
         void Start() {
-            CardThemeLib.CardThemeLib.instance.CreateOrGetType("DarknessBlack", new CardThemeColor() { bgColor = new Color(0.1978f, 0.1088f, 0.1321f), targetColor = new Color(0.0978f, 0.1088f, 0.1321f) });
-            CardThemeLib.CardThemeLib.instance.CreateOrGetType("RootCake", new CardThemeColor() { bgColor = new Color(0.7134047f, 0f, 1f, 0.5176471f), targetColor = new Color(0.2971698f, 0.6546086f, 1f) });
-            CardThemeLib.CardThemeLib.instance.CreateOrGetType("Abnormality", new CardThemeColor() { bgColor = new Color(0.212f, 0.031f, 0.031f), targetColor = new Color(0.933f, 0.949f, 0.612f) });
-            CardThemeLib.CardThemeLib.instance.CreateOrGetType("Inscryption", new CardThemeColor() { bgColor = new Color(0.51f, 0.455f, 0.333f), targetColor = new Color(0.641f, 0.222f, 0.143f) });
+            CardThemeLib.CardThemeLib.instance.CreateOrGetType("DarknessBlack", new CardThemeColor() { bgColor = Colour.New(0.1978, 0.1088, 0.1321), targetColor = Colour.New(0.0978, 0.1088, 0.1321) });
+            CardThemeLib.CardThemeLib.instance.CreateOrGetType("RootCake", new CardThemeColor() { bgColor = Colour.New(0.7134047, 0, 1, 0.5176471), targetColor = Colour.New(0.2971698, 0.6546086, 1) });
+            CardThemeLib.CardThemeLib.instance.CreateOrGetType("Abnormality", new CardThemeColor() { bgColor = Colour.New(0.212, 0.031, 0.031), targetColor = Colour.New(0.933, 0.949, 0.612) });
+            CardThemeLib.CardThemeLib.instance.CreateOrGetType("Inscryption", new CardThemeColor() { bgColor = Colour.New(0.51, 0.455, 0.333), targetColor = Colour.New(0.641, 0.222, 0.143) });
             
             if(BepInEx.Bootstrap.Chainloader.Plugins.Exists(plugin => plugin.Info.Metadata.GUID == "com.willuwontu.rounds.tabinfo")) {
                 TabInfoRegesterer.Setup();
@@ -88,6 +88,7 @@ namespace RootCore {
             foreach(RootCardInfo card in list.CardsToRegester) {
                 if(card == null || !card.Build) continue;
                 card.modVertion = modVertion;
+                if(card.Author == "Tessy") card.Author = "Izzy";
                 card.name = $"Root-Card  {card.Key} ({card.Tag})" + (betaOverwriteDoNotUse?"  BETA":"");
                 if(betaOverwriteDoNotUse && CardList.ModCards.ContainsKey(card.Key)) {
                     CardManager.cards.Remove(CardList.ModCards[card.Key].name);

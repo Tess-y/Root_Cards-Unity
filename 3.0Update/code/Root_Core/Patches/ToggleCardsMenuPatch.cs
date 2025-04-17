@@ -27,6 +27,11 @@ namespace RootCore.Patches {
                 }
                 Transform rootCards = scrollViews["Root"]; 
                 catagorys.Remove(rootCards);
+                var shefron = GameObject.Instantiate(rootCards.GetComponentInChildren<Toggle>().transform.parent.GetChild(0).gameObject, rootCards.GetComponentInChildren<Toggle>().transform.parent,true);
+                shefron.transform.localPosition = new Vector2(60, 2);
+                shefron.GetComponent<TextMeshProUGUI>().text = ">";
+                shefron.GetComponent<TextMeshProUGUI>().fontSizeMin = 20;
+                shefron.GetComponent<TextMeshProUGUI>().color = Colour.New(1,1,0.6);
                 List<Transform> rootCatagorys = new List<Transform>();
                 foreach(var category in scrollViews) {
                     if(category.Key.StartsWith("Root (")) {
@@ -37,6 +42,8 @@ namespace RootCore.Patches {
                 catagorys.RemoveAll(rootCatagorys.Contains);
 
                 rootCards.GetComponent<Button>().onClick.AddListener(() => {
+                    shefron.GetComponent<TextMeshProUGUI>().text = "v";
+                    shefron.GetComponent<TextMeshProUGUI>().color = Colour.New(0.4, 1, 0.6);
                     rootCatagorys.ForEach(catagory => {
                         if(!catagory.gameObject.activeSelf) {
                             catagory.gameObject.SetActive(true);
@@ -47,6 +54,8 @@ namespace RootCore.Patches {
 
                 foreach(var otherCategory in catagorys) {
                     otherCategory.GetComponent<Button>().onClick.AddListener(() => {
+                        shefron.GetComponent<TextMeshProUGUI>().text = ">";
+                        shefron.GetComponent<TextMeshProUGUI>().color = Colour.New(1, 1, 0.6);
                         rootCatagorys.ForEach(catagory => {
                             catagory.gameObject.SetActive(false);
                         });
@@ -54,8 +63,25 @@ namespace RootCore.Patches {
                 }
                 rootCards.GetComponentInChildren<Toggle>().gameObject.SetActive(false);
                 var text = ToggleCardsMenuHandler.scrollViews["Root"].Find("Viewport/Content").gameObject.AddComponent<TextMeshProUGUI>();
-                text.color = new Color(0.6f, 0.5f, 0.8f);
-                text.text = "  \r\n   Welcome to Root Cards,\r\n   this is a modular mod created by Lilith and Tessy.\r\n   \r\n   Cards added by different modules are separated into\r\n   sub-categories seen to the right under the 'Root' tab.\r\n   \r\n   If no sub-categories showed up after selecting 'Root'\r\n   it is likely that you do not have any modules installed.\r\n   please note that the core module does \r\n   almost nothing by itself, merely adding functionality\r\n   for the actual content moduals.\r\n   \r\n   We hope you enjoy our cards.\r\n   \r\n   If you have any feedback, or would like to report a bug,\r\n   please reach out to @__root__ in the RMC discord server.\r\n   ";
+                text.color = Colour.New(0.6, 0.5, 0.8);
+                text.text = "  " +
+                "\r\n   Welcome to Root Cards," +
+                "\r\n   this is a modular mod created by Lilith and Izzy." +
+                "\r\n   " +
+                "\r\n   Cards added by different modules are separated into" +
+                "\r\n   sub-categories seen to the right under the 'Root' tab." +
+                "\r\n   " +
+                "\r\n   If no sub-categories showed up after selecting 'Root'" +
+                "\r\n   it is likely that you do not have any modules installed." +
+                "\r\n   please note that the core module does " +
+                "\r\n   almost nothing by itself, merely adding functionality" +
+                "\r\n   for the actual content moduals." +
+                "\r\n   " +
+                "\r\n   We hope you enjoy our cards." +
+                "\r\n   " +
+                "\r\n   If you have any feedback, or would like to report a bug," +
+                "\r\n   please reach out to @__root__ in the RMC discord server." +
+                "\r\n   ";
                 text.fontSize = 20;
             });
         }

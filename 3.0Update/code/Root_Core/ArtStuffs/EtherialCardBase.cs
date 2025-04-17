@@ -31,11 +31,11 @@ namespace RootCore.ArtStuffs {
                 Vector2 vector = new Vector2(Mathf.PerlinNoise(startSeeds[obj] + Time.unscaledTime * speed, startSeeds[obj] + Time.unscaledTime * speed - 0.5f), Mathf.PerlinNoise(startSeeds[obj] + Time.unscaledTime * speed, startSeeds[obj] + Time.unscaledTime * speed) - 0.5f);
                 obj.localPosition = startPoses[obj] + (Vector3)vector * amount;
                 if(obj.GetComponent<Image>() is Image img)
-                    img.color = new Color(img.color.r, img.color.g, img.color.b, vector.y * vector.x);
+                    img.color = Colour.New(img.color.r, img.color.g, img.color.b, vector.y * vector.x);
                 if(obj.GetComponent<ProceduralImage>() is ProceduralImage procImg)
-                    procImg.color = new Color(procImg.color.r, procImg.color.g, procImg.color.b, vector.y * vector.x);
+                    procImg.color = Colour.New(procImg.color.r, procImg.color.g, procImg.color.b, vector.y * vector.x);
                 if(obj.GetComponent<TextMeshProUGUI>() is TextMeshProUGUI text)
-                    text.color = new Color(text.color.r, text.color.g, text.color.b, vector.x);
+                    text.color = Colour.New(text.color.r, text.color.g, text.color.b, vector.x);
             }
         }
     }

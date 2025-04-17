@@ -1,4 +1,5 @@
 using ModdingUtils.MonoBehaviours;
+using RootCore;
 using UnityEngine;
 
 namespace RootAdvancedCards.GunEffects {
@@ -29,7 +30,7 @@ namespace RootAdvancedCards.GunEffects {
 	        if(hungerLevel!=gunStatModifier.damage_mult && ModdingUtils.Utils.PlayerStatus.PlayerAliveAndSimulated(player)) {
 	            hungerLevel=Mathf.Clamp(hungerLevel, 1, hungerMax);
 	            float dilute = 1-Mathf.Clamp(hungerLevel/(float)hungerMax, 0f, 1f);
-	            gunStatModifier.projectileColor=new Color(1f, dilute, dilute);
+	            gunStatModifier.projectileColor= Colour.New(1, dilute, dilute);
 	            ClearModifiers();
 	            gunStatModifier.damage_mult=hungerLevel;
 	            ApplyModifiers();

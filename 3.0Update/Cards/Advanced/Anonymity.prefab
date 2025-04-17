@@ -80,6 +80,7 @@ MonoBehaviour:
   blacklistedCategories: []
   cardBase: {fileID: 1720757555582362, guid: ab7829e25091330408953c12456bfb86, type: 3}
   colorTheme: 3
+  modVertion: 
   cardRarity: 2
   Key: Anonymity
   Hidden: 0

@@ -44,7 +44,7 @@ namespace RootStones {
 			cooldownTimer = GetHardCooldown();
 			delayStacks = 0;
 			transform.parent.Find("Limbs/ArmStuff/ShieldStone/Canvas/Image").localScale *= 1.2f;
-            transform.parent.Find("Limbs/ArmStuff/ShieldStone/Canvas/Image").GetComponent<Image>().color = new Color(0.3f, 0.6f,1f);
+            transform.parent.Find("Limbs/ArmStuff/ShieldStone/Canvas/Image").GetComponent<Image>().color = Colour.New(0.3, 0.6,1);
         }
 
 		private void Update() {
@@ -52,7 +52,7 @@ namespace RootStones {
 				cooldownTimer += Time.deltaTime;
 			} else {
 				delayStacks = 0;
-                transform.parent.Find("Limbs/ArmStuff/ShieldStone/Canvas/Image").GetComponent<Image>().color = new Color(0.3f, 0.6f, 1f);
+                transform.parent.Find("Limbs/ArmStuff/ShieldStone/Canvas/Image").GetComponent<Image>().color = Colour.New(0.3, 0.6, 1);
             }
 		}
 	
@@ -60,7 +60,7 @@ namespace RootStones {
 		{
 			Block componentInParent = GetComponentInParent<Block>();
 			componentInParent.SuperFirstBlockAction -= Go;
-			transform.parent.Find("Limbs/ArmStuff/ShieldStone/Canvas/Image").GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f);
+			transform.parent.Find("Limbs/ArmStuff/ShieldStone/Canvas/Image").GetComponent<Image>().color = Colour.New(0.8, 0.8, 0.8);
             transform.parent.Find("Limbs/ArmStuff/ShieldStone/Canvas/Image").localScale /= 1.2f;
         }
 	
@@ -72,7 +72,7 @@ namespace RootStones {
 				delayStacks++;
 			}
 			cooldownTimer = -delay * delayStacks;
-            transform.parent.Find("Limbs/ArmStuff/ShieldStone/Canvas/Image").GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f);
+            transform.parent.Find("Limbs/ArmStuff/ShieldStone/Canvas/Image").GetComponent<Image>().color = Colour.New(0.8, 0.8, 0.8);
         }
 	
 		private IEnumerator DelayMove(BlockTrigger.BlockTriggerType triggerType, Vector3 beforePos)

@@ -12,7 +12,7 @@ namespace RootStones {
             player = GetComponentInParent<Player>();
             var hp = transform.parent.gameObject.GetComponentInChildren<HealthBar>().hp;
             hpSheild = Instantiate(hp,hp.transform.parent);
-            hpSheild.color = new Color(0.449f,0f,0.597f);
+            hpSheild.color = Colour.New(0.449,0,0.597);
         }
 
         void Update() {

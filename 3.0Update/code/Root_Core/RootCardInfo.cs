@@ -76,7 +76,7 @@ namespace RootCore {
 
                 Transform modAuthorObj = gameObject.GetComponentInChildren<CardVisuals>().transform.Find("Canvas/Front/AuthorNameText");
                 modAuthorObj.gameObject.SetActive(true);
-                modNameObj.GetComponent<TextMeshProUGUI>().text = $"Card Idea By:\n{Author}";
+                modAuthorObj.GetComponent<TextMeshProUGUI>().text = $"Card Idea By:\n{Author}";
             }
         }
 
