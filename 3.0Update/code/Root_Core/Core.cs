@@ -7,7 +7,6 @@ using RootCore.CardConditions;
 using Steamworks;
 using System;
 using System.Collections;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -19,7 +18,7 @@ using UnboundLib.Utils.UI;
 using UnityEngine;
 
 
-[assembly: AssemblyVersionAttribute(RootCore.Core.Version)]
+[assembly: AssemblyVersion(RootCore.Core.Version)]
 namespace RootCore {
 
     [BepInDependency("com.willis.rounds.unbound")]
@@ -41,6 +40,7 @@ namespace RootCore {
         public static bool Credits;
         public static Core instance;
         private static CardCategory[] _noLotteryCategories;
+        static bool test = true;
 
         public static CardCategory[] NoLotteryCategories {
             get {
@@ -58,7 +58,7 @@ namespace RootCore {
             Jotunn.Utils.AssetUtils.LoadAssetBundleFromResources("rootcore", typeof(Core).Assembly);
 
             var harmony = new Harmony(ModId);
-            harmony.PatchAll(); 
+            harmony.PatchAll(typeof(Core).Assembly); 
         }
 
         void Start() {
@@ -87,6 +87,10 @@ namespace RootCore {
 
             foreach(RootCardInfo card in list.CardsToRegester) {
                 if(card == null || !card.Build) continue;
+                if(test) {
+                    Debug(JsonUtility.ToJson(card));
+                    test = false;
+                }
                 card.modVertion = modVertion;
                 if(card.Author == "Tessy") card.Author = "Izzy";
                 card.name = $"Root-Card  {card.Key} ({card.Tag})" + (betaOverwriteDoNotUse?"  BETA":"");
@@ -103,7 +107,7 @@ namespace RootCore {
                 } else if(card.Restricted) {
                     ModdingUtils.Utils.Cards.instance.AddHiddenCard(card);
                     instance.ExecuteAfterFrames(15, () =>
-                        ((ObservableCollection<CardInfo>)typeof(CardManager).GetField("activeCards", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static).GetValue(null)).Add(card));
+                        CardManager.activeCards.Add(card));
                 } else {
                     if(card.Tag == "Root")
                         CardManager.cards.Add(card.name, new Card($"{card.Tag} ({list.name})", Unbound.config.Bind("Cards: " + card.Tag, card.name, !card.StartDisabled), card));
